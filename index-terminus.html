@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Blog - Pz H</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; background: #f4f4f4; }
+    header { background: #333; color: white; padding: 10px 0; text-align: center; }
+    main { max-width: 1200px; margin: 20px auto; padding: 20px; background: white; }
+    h1, h2 { margin-bottom: 10px; color: #333; }
+    section { margin-bottom: 30px; }
+    ul { list-style-type: none; padding: 0; }
+    li { margin: 5px 0; }
+    footer { text-align: center; padding: 10px 0; background: #333; color: white; }
+    .contact-info { display: flex; justify-content: space-around; }
+
+    /* Blog title */
+    .blog-title {
+      text-align: left;
+      font-size: 48px; /* Increase font size */
+      font-weight: bold;
+      color: #333;
+      margin: 60px 0;
+      font-family: 'Roboto', sans-serif; /* Use a clean modern font */
+      letter-spacing: 1px; /* Adjust letter spacing for more elegant appearance */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+      background: linear-gradient(to right, #616060, #b4b4b3); /* Gradient background */
+      -webkit-background-clip: text; /* Clip gradient to text */
+      color: transparent; /* Make text color transparent to show gradient */
+      padding: 5px 0;
+    }   
+
+    header {
+      background: #333;
+      color: white;
+      padding: 10px 0;
+      text-align: center;
+      position: relative; /* Allow positioning of elements within the header */
+    }
+
+    .subpage-link {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 18px;
+      color: white;
+      text-decoration: none;
+      background-color: #444;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .project-link:hover {
+      background-color: #555;
+    }
+
+
+    /* Circle Avatar */
+    .avatar-container {
+      display: flex;
+      align-items: left;
+      justify-content: left;
+      margin-bottom: 30px;
+    }
+
+    .avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 5px solid #333;
+      margin-right: 20px;
+      transition: transform 2s ease; /* Smooth rotation */
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Rotation on hover */
+    .avatar:hover {
+      transform: rotate(360deg); /* Rotate on hover */
+    }  
+
+    /* Frosted Glass Effect */
+    .frosted-glass {
+      background: rgba(255, 255, 204, 0.3); /* Semi-transparent background */
+      backdrop-filter: blur(10px); /* Frosted glass blur effect */
+      border-radius: 15px; /* Rounded corners */
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    }    
+
+    /* Collapsible Section Style */
+    .collapsible {
+      background-color: #333;
+      color: white;
+      cursor: pointer;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 15px;
+      display: block;
+      align-items: center; /* Align the triangle and text */
+    }
+
+    .collapsible:before {
+      content: "▷";
+      margin-right: 10px; /* Space between triangle and text */
+      font-size: 18px;
+      transition: transform 0.3s ease;
+    }
+
+    .collapsible.active:before {
+      content: "▽"; 
+    }
+
+    .active, .collapsible:hover {
+      background-color: #858584;
+    }
+
+    .content {
+      padding: 0 18px;
+      overflow: hidden;
+      background-color: #f4f4f4;
+      margin-top: 10px;
+      display: block;
+    } 
+
+
+  /* Timeline container */
+  .timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px 0;
+    display: block;
+  }
+
+  /* Black axis line */
+  .timeline::after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    background-color: #333;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1.5px;
+  }
+
+  /* 时间轴上的每个项目 */
+  .timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+  }
+
+  /* Odd items (left-side) */
+  .timeline-item:nth-child(odd) {
+    left: -8%;
+    padding-right: 25px;
+    text-align: right;
+  }
+
+  /* Even items (right-side) */
+  .timeline-item:nth-child(even) {
+    left: 50%;
+    padding-left: 25px;
+    text-align: left;
+  }
+  
+  /* Circle on timeline item */
+  .timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    right: -8px;
+    background-color: white;
+    border: 4px solid #333;
+    top: 28px;
+    border-radius: 50%;
+    z-index: 1;
+  }
+  
+  .timeline-item:nth-child(even)::after {
+    left: -8px;
+  }
+
+  /* 时间戳和内容的容器 */
+  .timeline-content {
+    padding: 20px 30px;
+    background-color: white;
+    position: relative;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+  
+  /* 时间戳样式 */
+  .timestamp {
+      font-weight: bold;
+      color: #007bff;
+  }
+
+  /* 内容标题样式 */
+  .timeline-content h2 {
+      margin-top: 0;
+  }    
+
+    
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>My Blog - Pz H</h1>
+  <a href="project_experience.html" class="subpage-link" style="right: 221px;">项目经验</a> <!-- Link to Project Experience -->
+  <a href="education_experience.html" class="subpage-link" style="right: 120px;">教育背景</a> <!-- Link to Education Experience -->
+  <a href="contact_me.html" class="subpage-link">联系方式</a> <!-- Link to Contact Me -->
+</header>
+
+
+  <main>
+    <section>
+  <!-- Avatar Section -->
+    <section class="avatar-container">
+      <div class="avatar">
+        <img src="https://avatars.githubusercontent.com/u/61221336?s=400&u=81b86cab5e9907df6a7c389f10bb1a49d9360b28&v=4" alt="Pz H"> <!-- Replace with actual image URL -->
+      </div>
+      
+  <!-- Blog Title -->      
+      <div class="blog-title">关于他</div>
+    </section>
+
+    <section class="frosted-glass">
+      <h2>个人简介</h2>
+      <p>大家好，我是MMM，现居上海，具有5年软件开发经验，擅长前端开发和全栈开发。</p>
+    </section>
+
+    <section class="frosted-glass">
+      <h2>工作经验</h2>
+
+      <!-- Work Experience 1 -->
+      <button class="collapsible">2016 - 2018: 软件开发工程师 - ABC公司</button>
+      <div class="timeline">
+
+        <!-- Project 1 -->
+        <div class="timeline-item">
+          <div class="timestamp">
+            <h3>2017年</h3>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <a href="project_experience.html">
+              <h2>项目A</h2>
+            </a>
+            <!-- Image below the title -->
+            <img src="https://ambrosiaforheads.com/wp-content/uploads/2018/12/JuicyJ-12-18.jpg" alt="Project A Image" style="width: 100%; max-width: 300px; margin-top: 10px;"> 
+              <p>负责前端开发，使用React和Redux构建用户界面，提升用户体验。</p>
+          </div>
+        </div>
+
+       <!-- Project 2 -->
+        <div class="timeline-item">
+          <div class="timestamp">
+            <h3>2017年</h3>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <a href="project_experience.html">
+              <h2>项目A</h2>
+            </a>
+            <!-- Image below the title -->
+            <img src="https://ambrosiaforheads.com/wp-content/uploads/2018/12/JuicyJ-12-18.jpg" alt="Project A Image" style="width: 100%; max-width: 300px; margin-top: 10px;"> 
+              <p>负责前端开发，使用React和Redux构建用户界面，提升用户体验。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Work Experience 1 -->
+      <button class="collapsible">2016 - 2018: 软件开发工程师 - ABC公司</button>
+      <div class="timeline">
+
+        <!-- Project 1 -->
+        <div class="timeline-item">
+          <div class="timestamp">
+            <h3>2017年</h3>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <a href="project_experience.html">
+              <h2>项目A</h2>
+            </a>
+            <!-- Image below the title -->
+            <img src="https://ambrosiaforheads.com/wp-content/uploads/2018/12/JuicyJ-12-18.jpg" alt="Project A Image" style="width: 100%; max-width: 300px; margin-top: 10px;"> 
+              <p>负责前端开发，使用React和Redux构建用户界面，提升用户体验。</p>
+          </div>
+        </div>
+
+       <!-- Project 2 -->
+        <div class="timeline-item">
+          <div class="timestamp">
+            <h3>2017年</h3>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <a href="project_experience.html">
+              <h2>项目A</h2>
+            </a>
+            <!-- Image below the title -->
+            <img src="https://ambrosiaforheads.com/wp-content/uploads/2018/12/JuicyJ-12-18.jpg" alt="Project A Image" style="width: 100%; max-width: 300px; margin-top: 10px;"> 
+              <p>负责前端开发，使用React和Redux构建用户界面，提升用户体验。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Work Experience 1 -->
+      <button class="collapsible">2016 - 2018: 软件开发工程师 - ABC公司</button>
+      <div class="timeline">
+
+        <!-- Project 1 -->
+        <div class="timeline-item">
+          <div class="timestamp">
+            <h3>2017年</h3>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <a href="project_experience.html">
+              <h2>项目A</h2>
+            </a>
+            <!-- Image below the title -->
+            <img src="https://ambrosiaforheads.com/wp-content/uploads/2018/12/JuicyJ-12-18.jpg" alt="Project A Image" style="width: 100%; max-width: 300px; margin-top: 10px;"> 
+              <p>负责前端开发，使用React和Redux构建用户界面，提升用户体验。</p>
+          </div>
+        </div>
+
+       <!-- Project 2 -->
+        <div class="timeline-item">
+          <div class="timestamp">
+            <h3>2017年</h3>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <a href="project_experience.html">
+              <h2>项目A</h2>
+            </a>
+            <!-- Image below the title -->
+            <img src="https://ambrosiaforheads.com/wp-content/uploads/2018/12/JuicyJ-12-18.jpg" alt="Project A Image" style="width: 100%; max-width: 300px; margin-top: 10px;"> 
+              <p>负责前端开发，使用React和Redux构建用户界面，提升用户体验。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Work Experience 1 -->
+      <button class="collapsible">2016 - 2018: 软件开发工程师 - ABC公司</button>
+      <div class="timeline">
+
+        <!-- Project 1 -->
+        <div class="timeline-item">
+          <div class="timestamp">
+            <h3>2017年</h3>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <a href="project_experience.html">
+              <h2>项目A</h2>
+            </a>
+            <!-- Image below the title -->
+            <img src="https://ambrosiaforheads.com/wp-content/uploads/2018/12/JuicyJ-12-18.jpg" alt="Project A Image" style="width: 100%; max-width: 300px; margin-top: 10px;"> 
+              <p>负责前端开发，使用React和Redux构建用户界面，提升用户体验。</p>
+          </div>
+        </div>
+
+       <!-- Project 2 -->
+        <div class="timeline-item">
+          <div class="timestamp">
+            <h3>2017年</h3>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <a href="project_experience.html">
+              <h2>项目A</h2>
+            </a>
+            <!-- Image below the title -->
+            <img src="https://ambrosiaforheads.com/wp-content/uploads/2018/12/JuicyJ-12-18.jpg" alt="Project A Image" style="width: 100%; max-width: 300px; margin-top: 10px;"> 
+              <p>负责前端开发，使用React和Redux构建用户界面，提升用户体验。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Work Experience 1 -->
+      <button class="collapsible">2016 - 2018: 软件开发工程师 - ABC公司</button>
+      <div class="timeline">
+
+        <!-- Project 1 -->
+        <div class="timeline-item">
+          <div class="timestamp">
+            <h3>2017年</h3>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <a href="project_experience.html">
+              <h2>项目A</h2>
+            </a>
+            <!-- Image below the title -->
+            <img src="https://ambrosiaforheads.com/wp-content/uploads/2018/12/JuicyJ-12-18.jpg" alt="Project A Image" style="width: 100%; max-width: 300px; margin-top: 10px;"> 
+              <p>负责前端开发，使用React和Redux构建用户界面，提升用户体验。</p>
+          </div>
+        </div>
+
+       <!-- Project 2 -->
+        <div class="timeline-item">
+          <div class="timestamp">
+            <h3>2017年</h3>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <a href="project_experience.html">
+              <h2>项目A</h2>
+            </a>
+            <!-- Image below the title -->
+            <img src="https://ambrosiaforheads.com/wp-content/uploads/2018/12/JuicyJ-12-18.jpg" alt="Project A Image" style="width: 100%; max-width: 300px; margin-top: 10px;"> 
+              <p>负责前端开发，使用React和Redux构建用户界面，提升用户体验。</p>
+          </div>
+        </div>
+      </div>      
+    </section>
+
+    <section class="frosted-glass">
+      <h2>技能</h2>
+      <ul>
+        <li>前端：HTML, CSS, JavaScript, React, Vue</li>
+        <li>后端：Node.js, Express</li>
+        <li>数据库：MySQL, MongoDB</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Pz H | All rights reserved</p>
+  </footer>
+
+  <script>
+    // Collapsible functionality
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+      // --- Start with sections unfolded ---
+      // Add "active" class to the button to match the initial unfolded state
+      coll[i].classList.add("active");
+      // Set content to display "block" to match the "active" class state
+      coll[i].nextElementSibling.style.display = "block";
+      // --- End initial setup ---
+
+      coll[i].addEventListener("click", function() {
+        // Toggle the "active" class for styling (e.g., the triangle icon)
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        
+        // Check the current inline display style and toggle it
+        if (content.style.display === "block") {
+          content.style.display = "none"; // If it's open, fold it
+        } else {
+          content.style.display = "block"; // If it's folded, unfold it
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
