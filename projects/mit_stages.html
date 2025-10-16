@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>项目经验 - MIT Stages</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; background: #f4f4f4; }
+    header { background: #333; color: white; padding: 10px 0; text-align: center; }
+    main { max-width: 1200px; margin: 20px auto; padding: 20px; background: white; }
+    h1, h2 { margin-bottom: 10px; color: #333; }
+    section { margin-bottom: 30px; }
+    ul { list-style-type: none; padding: 0; }
+    li { margin: 10px 0; }
+    footer { text-align: center; padding: 10px 0; background: #333; color: white; }
+    
+    /* Image and caption styling */
+    .image-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .image-container img {
+      max-width: 100%;
+      height: auto;
+    }
+    .caption {
+      font-style: italic;
+      color: #555;
+      margin-top: 10px;
+    }
+    
+    /* Position for the "Return to project experience" link */
+    .return-project-experience {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-size: 18px;
+      color: #333;
+      text-decoration: none;
+      background-color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      transition: background-color 0.3s ease;
+    }
+    .return-project-experience:hover {
+      background-color: #f4f4f4;
+    }
+
+    iframe {
+      width: 100%;
+      height: 260px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+</style>
+</head>
+<body>
+
+  <!-- "Return to Home" link -->
+  <a href="project_experience.html" class="return-project-experience">返回项目经验</a>
+    
+  <header>
+    <h1>Project Experience - Pz H</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>从一个记录者到分析者的转变</h2>
+      <p><strong>日期:</strong> 2025年6月</p>
+      <h2>掌握成本核算逻辑</h2>
+      <p>
+刚入职时，我把重点放在熟悉企业的成本核算逻辑和数据流向上。凭借过往审计项目的经验，我很快厘清了公司成本的主要构成：人工、材料、外协、物流与间接费用。</p>
+      <div class="image-container">
+        <img src="/images/pcr_1.jpg" alt="MIT Stages" width="700">
+        <p class="caption">成本分析报表的结构</p>
+      </div>
+      <p>
+公司采用项目归集的核算方式，各类成本数据由相关部门录入ERP系统，经成本分析员汇总后再由财务审核入账。我的首要任务是掌握系统取数的路径与成本分配逻辑。
+在Odoo系统的实际操作中，我发现一些数据结构存在不合理之处，例如工程师人工成本缺乏预分类、半成品出库混杂在原材料中等。</p>
+<p>这让我意识到，单纯依赖系统数据并不能支撑分析，必须先建立可靠的数据清洗与口径统一机制。通过反复比对源数据与报表口径，我逐步构建了符合企业实际的成本分析框架。这一阶段让我从单纯录入数据转变为理解数据。
+      </p>
+    </section>
+
+    <section>
+      <h2>熟悉预算逻辑</h2>
+      <p>
+在掌握成本核算的基础上，我开始深入了解预算体系。公司预算并非由财务制定，而是由报价工程师（QE）根据BOM结构、工艺流程与设备配置编制。这种模式让我第一次完整接触了制造业从产品结构到成本预估的全过程。</p>
+
+      <div class="image-container">
+        <img src="/images/pcr_2.jpg" alt="MIT Stages" width="800">
+        <p class="caption">从单纯核算成本到熟悉预算</p>
+      </div>
+
+<p>我通过研究各型号设备的BOM清单，熟悉不同零部件与工艺环节的成本构成。逐渐地，我不再只是关注花了多少钱，而是尝试理解为什么花这些钱和是否花得合理。
+我将实际成本与预算成本在报表中进行对应分析，初步形成了预算vs. 实际对比分析体系，并开始为后续绩效考核与报价策略提供数据支撑。</p>
+<p>这一阶段的收获在于，我感受到成本核算不是目的，成本控制才是，理解了成本分析的真正价值在于为经营决策提供依据。
+      </p>
+    </section>
+
+    <section>
+      <h2>数据自动化与系统开发</h2>
+      <p>
+在参与成本报表开发过程中，我发现上一轮项目开发仅停留在前端层面，系统无法实现实时取数，成本报表仍依赖人工录入。这使得分析滞后、易错，也无法满足决策层的实时性要求。
+由于公司IT人手有限，我主动承担了Odoo模块的二次开发任务。凭借大学阶段的编程与数据库背景，我自信能够实现成本数据的自动同步。</p>
+
+      <div class="image-container">
+        <img src="/images/pcr_3.jpg" alt="MIT Stages" width="800">
+        <p class="caption">部署Odoo到云服务器</p>
+      </div>
+
+<p>截至离开前，我独立完成了Odoo系统中新模块的部署和可视化设计。</p>
+
+      <div class="image-container">
+        <img src="/images/pcr_4.jpg" alt="MIT Stages" width="800">
+        <p class="caption">开发Odoo的新模块</p>
+      </div>
+
+<p>我深刻体会到数据分析岗位与系统开发是相互依存得，真正高效的分析必须依赖数据自动化，这是大势所趋。
+      </p>     
+    </section>
+
+    <section>
+      <h2>成本分析汇报</h2>
+      <p>
+<p>同一时间我还承担每月的成本分析汇报工作。这项汇报直接面向CEO，内容涵盖项目总体预算执行情况、各部门的成本偏差、主要原因及改进建议。
+汇报周期要求紧、内容跨部门，因此我重点优化了数据收集流程。通过自动化表格和脚本提取，我将原本需要两三天的数据整理时间压缩到半天以内。</p>
+
+      <div class="image-container">
+        <img src="/images/pcr_6.jpg" alt="MIT Stages" width="800">
+        <p class="caption">自动化的数据提取表</p>
+      </div>
+
+<p>在分析过程中，我不仅关注预算差异本身，更注重解释其背后的逻辑。例如，工程师工时超支可能源于设计更改，材料成本上升可能因采购批次汇率差异，外协成本超预算可能由于工期紧张导致更多外包行为等问题。
+我通过使用数据背书，并访谈相关负责人的成本分析方法，使分析结论更具说服力，也更能推动部门改进。
+      </p>     
+    </section>
+
+    <section>
+      <h2>数据分析深化与模型化探索</h2>
+
+  <iframe srcdoc="
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset='UTF-8'>
+      <link rel='stylesheet' 
+        href='https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css'>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js'></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js'></script>
+      <style>
+        body { 
+          margin: 0; 
+          background: #1e1e1e; 
+          color: #ccc; 
+          font-family: monospace; 
+          padding: 10px; 
+        }
+        pre { 
+          margin: 0; 
+          padding: 10px; 
+          border-radius: 8px; 
+          background: #2d2d2d; 
+        }
+      </style>
+    </head>
+    <body>
+      <pre><code class='language-javascript'>
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# 读取Excel文件
+file_path = 'workshop_plot_data-0901.xlsx'
+df = pd.read_excel(file_path, sheet_name='Points_Data')
+
+# 提取字段
+x = df['Workshop Variance (Hrs)']
+y = df['Workshop Cost Variance (USD)']
+sizes = df['Contract\nTotal\n(USD)'] / 300
+labels = df.apply(lambda row: {row['Job No.']}-{row['CustomerName']}-{row['Sales Type']}, axis=1)
+
+# 创建图形
+plt.figure(figsize=(14, 9))
+
+# 绘制红色叉号，大小代表合同金额
+plt.scatter(x, y, marker='x', s=sizes, color='red', alpha=0.8)
+
+# 使用半透明背景+灰边框
+annotation_box = dict(boxstyle='round,pad=0.3',
+                      edgecolor='gray',
+                      facecolor='white',
+                      alpha=0.6)
+
+for i in range(len(df)):
+    job_no = df.loc[i, 'Job No.']
+
+    # 默认偏移
+    offset_x = 100
+    offset_y = 10 * ((-1) ** i)
+
+    # 单独调整特定点的偏移量以避免重叠
+    if job_no == 25085:
+        offset_x -= 500
+    elif job_no == 25255:
+        offset_x -= 400
+        offset_y -= 100
+    elif job_no == 25014:
+        offset_x -= 400
+        offset_y += 50
+    elif job_no == 25105:
+        offset_x -= 600
+        offset_y += 50
+    elif job_no == 25267:
+        offset_x -= 400
+    elif job_no == 25201:
+        offset_x -= 400
+        offset_y -= 50
+    elif job_no == 25261:
+        offset_y -= 70
+    elif job_no in [25023, 25214]:
+        offset_y += 70
+
+
+    plt.annotate(
+        labels[i],
+        (x[i], y[i]),
+        textcoords= offset points,
+        xytext=(offset_x, offset_y),
+        ha='left',
+        arrowprops=dict(arrowstyle='->', lw=0.5, shrinkA=0, shrinkB=0),
+        bbox=annotation_box
+    )
+
+# 图表标题与标签
+plt.xlabel('Workshop Variance (Hrs)', labelpad=15)
+plt.ylabel('Workshop Cost Variance (USD)', labelpad=15)
+plt.title('Workshop hr Variance vs. Cost Variance', pad=20)
+
+plt.grid(True)
+plt.tight_layout()
+
+# 保存图像为 PNG
+output_file = 'workshop_variance_red_x_boxed_plot-0901-2.png'
+plt.savefig(output_file, dpi=300)
+
+print(diagram exported to {output_file})
+  "></iframe>
+
+  <p>
+在积累大量历史项目数据后，我开始尝试将分析标准化、模型化。我编写了Python脚本，对预算成本与实际成本的差异进行可视化处理，通过散点图直观展示项目偏差程度。</p>
+
+      <div class="image-container">
+        <img src="/images/pcr_7.jpg" alt="MIT Stages" width="800">
+        <p class="caption">车间成本差异的散点图</p>
+      </div>
+
+<p>进一步地，我将工时差异与成本差异进行线性回归验证，识别出异常项目，并针对性地展开分析。这种方法帮助我快速定位“异常但隐蔽”的问题项目，为后续的内部控制和流程优化提供了方向。
+我始终认为，成本分析的最终价值不在于数字本身，而在于通过数据帮助企业更好地认识自身、控制风险、优化决策。这正是我过去几年努力的方向，也是我希望持续深入的领域。
+      </p>     
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Pz H | All rights reserved</p>
+  </footer>
+
+</body>
+</html>

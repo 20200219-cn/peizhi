@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>项目经验 - MO Stages</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; background: #f4f4f4; }
+    header { background: #333; color: white; padding: 10px 0; text-align: center; }
+    main { max-width: 1200px; margin: 20px auto; padding: 20px; background: white; }
+    h1, h2 { margin-bottom: 10px; color: #333; }
+    section { margin-bottom: 30px; }
+    ul { list-style-type: none; padding: 0; }
+    li { margin: 10px 0; }
+    footer { text-align: center; padding: 10px 0; background: #333; color: white; }
+    
+    /* Image and caption styling */
+    .image-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .image-container img {
+      max-width: 100%;
+      height: auto;
+    }
+    .caption {
+      font-style: italic;
+      color: #555;
+      margin-top: 10px;
+    }
+    
+    /* Position for the "Return to project experience" link */
+    .return-project-experience {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-size: 18px;
+      color: #333;
+      text-decoration: none;
+      background-color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      transition: background-color 0.3s ease;
+    }
+    .return-project-experience:hover {
+      background-color: #f4f4f4;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- "Return to Home" link -->
+  <a href="project_experience.html" class="return-project-experience">返回项目经验</a>
+    
+  <header>
+    <h1>Project Experience - Pz H</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>从跨境电商到科技金融</h2>
+      <p><strong>日期:</strong> 2024年12月</p>
+      <h2>业务理解与风险识别</h2>
+      <p>
+我是会计与金融专业出身，对金融服务的基本逻辑比较熟悉。当我第一次了解公司业务时，意识到这是一个在菲律宾运营的类金融服务平台，主要包含 BNPL（Buy Now Pay Later）与 QL（Quick Loan） 模式。所以快速理解新行业的业务模式与风险特征，识别会计与合规风险点就是我当时的主要任务。
+由于平台业务本质是消费信贷服务，在多数国家属于持牌经营范畴，而菲律宾当地监管较为宽松、制度尚未成熟，导致企业的风险暴露点集中在监管合规、数据安全、及放贷资金追踪方面。
+我通过对比国内的花呗、借呗产品体系，很快在脑中形成了产品逻辑，将国内成熟模式与海外平台做对比，为后续数据核算打下基础。
+      </p>
+    </section>
+
+    <section>
+      <h2>从风控视角梳理财务数据</h2>
+      <p>
+进入实操阶段后，我开始负责平台数据的采集与清洗。企业平台每日生成放贷、还款与逾期记录，但系统逻辑并不稳定。
+比方说，超过6个月逾期的贷款会被自动标记为坏账，之后的罚息与手续费停止计算。若借款人此后补还，数据需人工更新，极易失真。
+线下现金还款未完全同步入系统，需要资金专员手动添加到手工台账中。更严重的还包括放贷数据的消失，原因包括资金通道延迟或中间平台篡改（疑似中间人攻击）。
+在这个阶段，我尽可能得与资金和风控部门保持沟通，确保会计核算基于真实数据。
+      </p>
+    </section>
+
+    <section>
+      <h2>账务核算与合并报表</h2>
+      <p>
+我负责四家实体的账务处理与合并报表编制，包括：
+<p>一个虚拟主体（用于记录业务平台数据）。 核算方式以轧差为主，每期取末日数据与上期对比，计算期间发生额并编制分录。</p>
+<p>一个国内主体。这里账务处理得信息化程度高，审批、合同、费用报销均在共享平台，流程也更规范。我需要兼顾办税和与小微主体票据往来。</p>
+<p>一个香港主体与一个菲律宾主体。他们都采用 IFRS 准则，账务处理以资金往来与海外业务为主。我之后也接手了菲律宾方面的税务日常，包括增值税（VAT），社保费用， Withholding Tax，与国内体系在很大程度上类似。</p>
+<p>最后，为提升投资人对海外项目的满意度，我主导搭建了一个Excel自动化财务模型，核心是从余额表自动继承数据到基于上市金融企业模板的三大报表格式，实现投资人视角的专业呈现。</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Pz H | All rights reserved</p>
+  </footer>
+
+</body>
+</html>
