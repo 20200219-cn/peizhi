@@ -1,256 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>My Blog - Pz H</title>
-  <style>
-    /* -------- 基础样式与小修复 -------- */
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { width: 100%; }
-    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; background: #f4f4f4; overflow-x: hidden; }
-    img, object, iframe, video { max-width: 100%; height: auto; display: block; }
-
-    header { background: #333; color: #fff; padding: 10px 0; text-align: center; position: relative; }
-    main { max-width: 1200px; margin: 20px auto; padding: 20px; background: #fff; }
-    h1, h2 { margin-bottom: 10px; color: #333; }
-    section { margin-bottom: 30px; }
-    ul { list-style: none; padding: 0; margin: 0; }
-    li { margin: 5px 0; }
-    footer { text-align: center; padding: 10px 0; background: #333; color: #fff; }
-
-    /* 顶部右侧链接（桌面） */
-    .subpage-link {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      font-size: 18px;
-      color: #fff;
-      text-decoration: none;
-      background-color: #444;
-      padding: 5px 10px;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-    }
-    .subpage-link:hover { background-color: #555; }
-
-    /* Blog title */
-    .blog-title {
-      text-align: left;
-      font-size: 48px;
-      font-weight: bold;
-      color: #333;
-      margin: 60px 0;
-      font-family: 'Roboto', sans-serif;
-      letter-spacing: 1px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-      background: linear-gradient(to right, #616060, #b4b4b3);
-      -webkit-background-clip: text;
-      color: transparent;
-      padding: 5px 0;
-    }
-
-    /* 头像 */
-    .avatar-container {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 20px;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
-    }
-    .avatar {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 5px solid #333;
-      transition: transform 2s ease;
-      flex: 0 0 auto;
-    }
-    .avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .avatar:hover { transform: rotate(360deg); }
-
-    /* 毛玻璃卡片 */
-    .frosted-glass {
-      background: rgba(255, 255, 204, 0.3);
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    /* 折叠按钮 */
-    .collapsible {
-      background-color: #333;
-      color: #fff;
-      cursor: pointer;
-      padding: 10px;
-      width: 100%;
-      border: none;
-      text-align: left;
-      outline: none;
-      font-size: 15px;
-      display: block;
-    }
-    .collapsible:before {
-      content: "▷";
-      margin-right: 10px;
-      font-size: 18px;
-      transition: transform 0.3s ease;
-    }
-    .collapsible.active:before { content: "▽"; }
-    .active, .collapsible:hover { background-color: #858584; }
-
-    .content {
-      padding: 0 18px;
-      overflow: hidden;
-      background-color: #f4f4f4;
-      margin-top: 10px;
-      display: block;
-    }
-
-    /* 时间轴（桌面） */
-    .timeline {
-      position: relative;
-      max-width: 800px;
-      margin: 50px auto;
-      padding: 20px 0;
-      display: block;
-    }
-    .timeline::after {
-      content: '';
-      position: absolute;
-      width: 5px;
-      background-color: #333;
-      top: 0;
-      bottom: 0;
-      left: 25%;
-      margin-left: -1.5px;
-    }
-    .timeline-item {
-      padding: 10px 40px;
-      position: relative;
-      background-color: inherit;
-      width: 70%;
-    }
-    .timeline-item:nth-child(odd) {
-      left: -53%;
-      padding-right: 25px;
-      text-align: right;
-    }
-    .timeline-item:nth-child(even) {
-      left: 25%;
-      padding-left: 25px;
-      text-align: left;
-    }
-    .timeline-item::after {
-      content: '';
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      right: -10px;
-      background-color: #fff;
-      border: 4px solid #333;
-      top: 28px;
-      border-radius: 50%;
-      z-index: 1;
-    }
-    .timeline-item:nth-child(even)::after { left: -8px; right: auto; }
-    .timeline-content {
-      padding: 20px 30px;
-      background-color: #fff;
-      position: relative;
-      border-radius: 6px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-
-    /* 隐藏第奇数个时间节点的圆点 */
-.timeline-item:nth-child(odd)::after {
-  display: none;
-}
-    .timestamp { font-weight: bold; color: #007bff; }
-    .timeline-content h2 { margin-top: 0; }
-
-    /* -------- 移动端自适应：关键防溢出改造 -------- */
-    @media (max-width: 768px) {
-      body { font-size: 14px; line-height: 1.5; }
-      main { width: 100%; margin: 0; padding: 12px; border-radius: 0; }
-      .frosted-glass { padding: 12px; }
-
-      /* 顶部链接改为自然流式，避免绝对定位造成溢出 */
-      header { padding-bottom: 50px; }
-      .subpage-link {
-        position: static;
-        display: inline-block;
-        margin: 8px 6px 0;
-        font-size: 14px;
-        padding: 6px 10px;
-      }
-
-      /* 标题与头像缩放 */
-      .blog-title { font-size: 28px; margin: 16px 0; }
-      .avatar { width: 110px; height: 110px; border-width: 3px; }
-
-      /* 时间轴改为单列，去掉左右位移，防止挤出屏幕 */
-      .timeline {
-        max-width: 100%;
-        margin: 24px 0;
-        padding: 0;
-      }
-      .timeline::after {
-        left: 10px;         /* 竖线靠左 */
-        width: 3px;         /* 细一点更协调 */
-      }
-      .timeline-item {
-        width: 100%;
-        left: 0 !important; /* 清除左右分栏的位移 */
-        padding: 10px 0 10px 28px; /* 给左侧时间线留空 */
-        text-align: left !important;
-      }
-      .timeline-item::after {
-        left: 2px;          /* 圆点靠近竖线 */
-        right: auto;
-        top: 18px;
-        width: 12px;
-        height: 12px;
-        border-width: 3px;
-      }
-      .timeline-content {
-        width: 100%;
-        padding: 14px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-      }
-
-      /* 媒体元素 100% 宽度以防固定像素造成溢出 */
-      img, object, iframe, video {
-        max-width: 100% !important;
-        width: 100% !important;  /* 覆盖 HTML 上写死的 width=500/1000 */
-        height: auto !important;
-      }
-    }
-.timeline-content {
-  cursor: pointer;
-}
-
-.timeline-content:hover {
-  box-shadow: 0 0 10px rgba(0,0,0,0.25);
-}
-
-.timeline-content a {
-  display: block;
-  color: inherit;
-  text-decoration: none;
-}
-
-.timeline-content a::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-}
-
-
-</style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
@@ -268,7 +22,7 @@
       <div class="avatar">
         <img src="images/avatar_1.jpg" alt="Pz H">
       </div>
-      <div class="blog-title">他的工作经历</div>
+      <div class="blog-title">关于他</div>
     </section>
 
     <section class="frosted-glass">
@@ -291,11 +45,13 @@
           <div class="timestamp"><h3>2022年7月</h3></div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-content">
-            <a href="projects/bt_project_1.html"><h2>H股上市公司季报审阅</h2></a>
-            <img src="images/bt_project_1_main.jpg" alt="H股季报审阅" width="500">
-            <object type="text/html" data="text/bt_project_1_brief.html" width="500" height="100"></object>
-          </div>
+          <a class="card-link" href="projects/bt_project_1.html">
+            <div class="timeline-content">
+              <h2>H股上市公司季报审阅</h2>
+              <img src="images/bt_project_1_main.jpg" alt="H股季报审阅" width="500">
+              <object type="text/plain" data="text/bt_project_1_brief.html" width="500" height="100"></object>
+            </div>
+          </a>
         </div>
 
         <!-- BT Project 2 -->
@@ -303,11 +59,13 @@
           <div class="timestamp"><h3>2022年10月</h3></div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-content">
-            <a href="projects/bt_project_2.html"><h2>A股上市公司预审</h2></a>
-            <img src="images/bt_project_2_main.jpg" alt="A股预审" width="500">
-            <object type="text/html" data="text/bt_project_2_brief.html" width="500" height="100"></object>
-          </div>
+          <a class="card-link" href="projects/bt_project_2.html">
+            <div class="timeline-content">            
+              <h2>A股上市公司预审</h2>
+              <img src="images/bt_project_2_main.jpg" alt="A股预审" width="500">
+              <object type="text/plain" data="text/bt_project_2_brief.html" width="500" height="100"></object>
+            </div>
+          </a>
         </div>
 
         <!-- BT Project 3 -->
@@ -315,11 +73,13 @@
           <div class="timestamp"><h3>2022年12月</h3></div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-content">
-            <a href="projects/bt_project_3.html"><h2>A股上市公司年审</h2></a>
-            <img src="images/bt_project_3_main.jpg" alt="A股年审" width="500">
-            <object type="text/html" data="text/bt_project_3_brief.html" width="500" height="100"></object>
-          </div>
+          <a class="card-link" href="projects/bt_project_3.html">
+            <div class="timeline-content">
+              <h2>A股上市公司年审</h2>
+              <img src="images/bt_project_3_main.jpg" alt="A股年审" width="500">
+              <object type="text/plain" data="text/bt_project_3_brief.html" width="500" height="100"></object>
+            </div>
+          </a>  
         </div>
 
         <!-- BT Project 4 -->
@@ -327,11 +87,13 @@
           <div class="timestamp"><h3>2023年7月</h3></div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-content">
-            <a href="projects/bt_project_4.html"><h2>ipo审计项目</h2></a>
-            <img src="images/bt_project_4_main.jpg" alt="IPO审计项目" width="500">
-            <object type="text/html" data="text/bt_project_4_brief.html" width="500" height="100"></object>
-          </div>
+          <a class="card-link" href="projects/bt_project_4.html">
+            <div class="timeline-content">
+              <h2>ipo审计项目</h2>
+              <img src="images/bt_project_4_main.jpg" alt="IPO审计项目" width="500">
+              <object type="text/html" data="text/bt_project_4_brief.html" width="500" height="100"></object>
+            </div>
+          </a>  
         </div>
       </div>
 
@@ -342,11 +104,13 @@
           <div class="timestamp"><h3>2024年3月</h3></div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-content">
-            <a href="projects/cq_stages.html"><h2>从乙方到甲方</h2></a>
-            <img src="images/cq_stages_main.jpg" alt="从乙方到甲方" width="500">
-            <object type="text/html" data="text/cq_stages_brief.html" width="500" height="100"></object>
-          </div>
+          <a class="card-link" href="projects/cq_stages.html">
+            <div class="timeline-content">
+              <h2>从乙方到甲方</h2>
+              <img src="images/cq_stages_main.jpg" alt="从乙方到甲方" width="500">
+              <object type="text/html" data="text/cq_stages_brief.html" width="500" height="100"></object>
+            </div>
+          </a>  
         </div>
       </div>
 
@@ -357,11 +121,13 @@
           <div class="timestamp"><h3>2024年12月</h3></div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-content">
-            <a href="projects/mo_stages.html"><h2>在金融领域拓展</h2></a>
-            <img src="images/mo_stages_main.jpg" alt="在金融领域拓展" width="500">
-            <object type="text/html" data="text/mo_stages_brief.html" width="500" height="100"></object>
-          </div>
+          <a class="card-link" href="projects/mo_stages.html">
+            <div class="timeline-content">
+              <h2>在金融领域拓展</h2>
+              <img src="images/mo_stages_main.jpg" alt="在金融领域拓展" width="500">
+              <object type="text/html" data="text/mo_stages_brief.html" width="500" height="100"></object>
+            </div>
+          </a>  
         </div>
       </div>
 
@@ -372,11 +138,13 @@
           <div class="timestamp"><h3>2025年6月</h3></div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-content">
-            <a href="projects/mit_stages.html"><h2>专注数据分析</h2></a>
-            <img src="images/mit_stages_main.jpg" alt="专注数据分析" width="500">
-            <object type="text/html" data="text/mit_stages_brief.html" width="500" height="100"></object>
-          </div>
+          <a class="card-link" href="projects/mit_stages.html">
+            <div class="timeline-content">
+              <h2>专注数据分析</h2>
+              <img src="images/mit_stages_main.jpg" alt="专注数据分析" width="500">
+              <object type="text/html" data="text/mit_stages_brief.html" width="500" height="100"></object>
+            </div>
+          </a>  
         </div>
       </div>
 
@@ -397,23 +165,7 @@
   <p>&copy; 2025 Pz H | All rights reserved</p>
 </footer>
 
-<script>
-  // 折叠交互
-  var coll = document.getElementsByClassName("collapsible");
-  for (var i = 0; i < coll.length; i++) {
-    coll[i].classList.add("active");
-    coll[i].nextElementSibling.style.display = "block";
-    coll[i].addEventListener("click", function() {
-      this.classList.toggle("active");
-      var content = this.nextElementSibling;
-      if (content.style.display === "block") {
-        content.style.display = "none";
-      } else {
-        content.style.display = "block";
-      }
-    });
-  }
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
