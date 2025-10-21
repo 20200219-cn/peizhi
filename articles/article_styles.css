@@ -12,8 +12,13 @@ body {
 }
 
 .container {
-  width: 80%;
+  width: 65%;
   margin: 0 auto;
+}
+
+.video-container {
+  margin-top: 20px; /* 在视频上方添加一些空间 */
+  margin-bottom: 20px; /* 在视频下方添加一些空间 */
 }
 
 header {
@@ -70,8 +75,16 @@ article p {
 
 .right-sidebar {
   width: 30%;
-  padding-left: 20px;
-  margin-top: 80px; /* Add space above the sidebar */
+  padding-left: 10px;
+  margin-top: 170px; /* Add space above the sidebar */
+}
+
+.right-sidebar h3 {
+  font-size: 13px; /* Adjust font size of the section titles */
+}
+
+.right-sidebar ul li {
+  font-size: 10px; /* Adjust font size of list items */
 }
 
 .widget {
