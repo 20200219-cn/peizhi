@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>HK vs SG vs CA - Tax Flows with Gantt Timelines & Collapsible Checklists (YE 31 Dec)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: Arial, sans-serif; background:#f8f9fa; margin:24px; }
+    h2 { text-align:center; margin-bottom:16px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 1280px) { .grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 980px)  { .grid { grid-template-columns: 1fr; } }
+    .card {
+      background:#fff; border-radius:12px; padding:16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    .title { font-weight:700; font-size:18px; margin:4px 4px 12px; }
+    .subtitle { font-weight:600; font-size:14px; margin:12px 4px 8px; color:#333; }
+    pre.mermaid { margin:0; }
+    .note { font-size:12px; color:#666; margin:8px 4px 0; line-height:1.4; }
+    details { border:1px solid #e5e7eb; border-radius:8px; padding:10px 12px; margin-top:10px; background:#fafafa; }
+    summary { cursor:pointer; font-weight:600; }
+    details > ul { margin:10px 18px; }
+    details li { margin:6px 0; }
+    .small { font-size:12px; color:#555; }
+  </style>
+</head>
+<body>
+
+  <h2>企业所得税申报流程图 (截至 2025年12月31日)</h2>
+
+  <div class="grid">
+
+    <!-- Hong Kong -->
+    <div class="card">
+      <div class="title">香港 - 企业利得税</div>
+      <pre class="mermaid">
+flowchart TD
+    A["12月31日 - 会计年度终了"] --> B["准备财务报表"]
+    B --> C["核数师进场审计 (26年1月 - 4月)"]
+    C --> D["香港税务局(IRD) 发放利得税申报表BIR51 / BIR52 (26年4月1日)"]
+    D --> E{"公司类型?"}
+    E -->|普通公司| F["提交截止日: 26年5月2日"]
+    E -->|申请延期| G["提交截止日: 26年8月15日"]
+    F --> H["提交三项主要文件: 审计财务报表 + 税务计算书 + 利得税申报表"]
+    G --> H
+    H --> I["IRD对提供文件进行评估和审查 (26年9月 - 12月)"]
+    I --> J{"如有异议?"}
+    J -->|是| K["在30天内提交异议通知"]
+    J -->|否| L["支付税款 (26年1月 - 次年4月)"]
+    L --> M["下个循环开始"]
+      </pre>
+
+    </div>
+
+    <!-- Singapore -->
+    <div class="card">
+      <div class="title">新加坡 - 企业所得税</div>
+      <pre class="mermaid">
+flowchart TD
+    A1["12月31日 - 会计年度终了"] --> B1["关账并准备报表"]
+    B1 --> B2["审计师进场审计 (26年1月 - 3月)"]
+    B2 --> C1["3月31日前提交预计应纳税收入(ECI)给新加坡税务局(IRAS)"]
+    C1 --> D1{"收入 <= 500万 且 ECI = 0?"}
+    D1 -->|是| E1["符合ECI豁免标准"]
+    D1 -->|否| F1["开始使用 GIRO 计划，自动分期支付ECI税款 (分10-12期支付)"]
+    B2 --> G1["确保遵守新加坡会计与企业监管局(ACRA)之规定"]
+    G1 --> G2["如需举办年度股东会: 需在6月30日前举行"]
+    G2 --> G3["于7月31日前向ACRA提交年报"]
+    G1 --> G4["若是无需举办年度股东会的小型公司: 于7月31日前向ACRA提交年报"]
+    B2 --> H1["向IRAS提交企业税务申报表(Form C-S/C) - 电子方式申报截至26年11月30日"]
+    H1 --> I1["IRAS于28年5月到9月之间向公司发出税务评估通知"]
+    I1 --> J1{"对评估结果不满?"}
+    J1 -->|是| K1["在2个月内提交异议"]
+    J1 -->|否| L1["在截止日前支付税款 (GIRO 或 一次性支付)"]
+    L1 --> M1["下个循环开始"]
+    E1 --> H1
+    F1 --> L1
+      </pre>
+
+    </div>
+
+    <!-- Canada -->
+    <div class="card">
+      <div class="title">加拿大 - 企业所得税</div>
+      <pre class="mermaid">
+flowchart TD
+    A2["12月31日 - 税务年度终了"] --> B2["准备报表"]
+    B2 --> C2["基于预估税款分期支付企业所得税 (通常按月支付)"]
+    B2 --> D2["26年6月30日前向加拿大税务局(CRA)提交T2企业所得税申报表"]
+    B2 --> E2{"是否有尾款?"}
+    E2 -->|大多数企业| F2["26年2月底前支付尾款"]
+    E2 -->|有资质的私人公司| G2["26年3月底前支付尾款"]
+    B2 --> H2["提交薪酬信息: 2月底前提交T4和T5申报单"]
+    B2 --> I2["商品和服务税/合并销售税 (GST/HST) 申报 - 月度，季度，年度 (基于公司规模); 若年度申报则在26年3月31日前提交"]
+    D2 --> J2["CRA向纳税人发出税务评估通知 (视时间而定)"]
+    J2 --> K2{"对税务评估有异议?"}
+    K2 -->|是| L2["90天内提交异议声明"]
+    K2 -->|否| M2["支付应缴税款并保存相关记录"]
+    M2 --> N2["下个循环开始"]
+      </pre>
+
+  </div>
+
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
+
+</body>
+</html>

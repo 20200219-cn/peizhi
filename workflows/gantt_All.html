@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>税务付款时间轴与所需文件清单</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: Arial, sans-serif; background:#f8f9fa; margin:24px; }
+    h2 { text-align:center; margin-bottom:16px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 1280px) { .grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 980px)  { .grid { grid-template-columns: 1fr; } }
+    .card {
+      background:#fff; border-radius:12px; padding:16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    .title { font-weight:700; font-size:18px; margin:4px 4px 12px; }
+    .subtitle { font-weight:600; font-size:14px; margin:12px 4px 8px; color:#333; }
+    pre.mermaid { margin:0; }
+    .note { font-size:12px; color:#666; margin:8px 4px 0; line-height:1.4; }
+    details { border:1px solid #e5e7eb; border-radius:8px; padding:10px 12px; margin-top:10px; background:#fafafa; }
+    summary { cursor:pointer; font-weight:600; }
+    details > ul { margin:10px 18px; }
+    details li { margin:6px 0; }
+    .small { font-size:12px; color:#555; }
+  </style>
+</head>
+<body>
+
+  <h2>税务付款时间轴与所需文件清单</h2>
+
+  <div class="grid">
+
+    <!-- Hong Kong -->
+    <div class="card">
+      <div class="title">香港 - 利得税付款时间轴</div>
+      <pre class="mermaid">
+gantt
+    title 香港暂缴税 - 示例（财务年度 YE 2025-12-31，付款发生在 2026）
+    dateFormat  YYYY-MM-DD
+    axisFormat  %b
+
+    section 暂缴税
+    第一期付款 ~75%       :active,  task1, 2026-01-15, 10d
+    第二期付款 ~25%       :         task2, 2026-04-15, 10d
+
+    section 最终结算
+    评估与抵消           :         task3, 2026-09-15, 30d
+    最终支付（如有）     :milestone, m1, 2026-11-15, 1d
+      </pre>
+      <div class="note small">注：实际付款时间与金额占比会根据 IRD 通知调整；此为示例常见比例。</div>
+
+      <div class="subtitle">所需文件</div>
+      <details>
+        <summary>表格、附件、审查要点</summary>
+        <ul>
+          <li><b>利得税申报表（PTR）：</b> BIR51 表（公司用）。</li>
+          <li><b>补充表格：</b> 行业表格或特定附表（例如亏损、折旧明细）。</li>
+          <li><b>附件：</b> 审计财报、税务计算、亏损结转明细、关联交易及境外收入证明。</li>
+          <li><b>审查要点：</b> 年度截止一致性、转让定价、境外免税、暂缴税的相互抵消。</li>
+        </ul>
+      </details>
+    </div>
+
+    <!-- Singapore -->
+    <div class="card">
+      <div class="title">新加坡 - 公司所得税付款时间轴</div>
+      <pre class="mermaid">
+gantt
+    title 新加坡 ECI GIRO - 示例（财务年度 YE 2025-12-31，付款发生在 2026）
+    dateFormat  YYYY-MM-DD
+    axisFormat  %b
+
+    section ECI GIRO（10期付款计划）
+    第一期（1月）   :active, s1, 2026-01-05, 10d
+    第二期（2月）   :        s2, 2026-02-05, 10d
+    第三期（3月）   :        s3, 2026-03-05, 10d
+    第四期（4月）   :        s4, 2026-04-05, 10d
+    第五期（5月）   :        s5, 2026-05-05, 10d
+    第六期（6月）   :        s6, 2026-06-05, 10d
+    第七期（7月）   :        s7, 2026-07-05, 10d
+    第八期（8月）   :        s8, 2026-08-05, 10d
+    第九期（9月）   :        s9, 2026-09-05, 10d
+    第十期（10月）  :        s10,2026-10-05, 10d
+
+    section 最终支付
+    e-File Form C-S/C  : milestone, s11, 2027-11-30, 1d
+    最终税款（按 IRAS 通知） : s12, 2028-01-15, 20d
+      </pre>
+      <div class="note small">注：ECI GIRO 分期数可调整，通常为 10 期；最终税款可以按 GIRO 或一次性支付。</div>
+
+      <div class="subtitle">所需文件</div>
+      <details>
+        <summary>表格、附件、审查要点</summary>
+        <ul>
+          <li><b>ECI： </b>通过 myTax Portal 提交，确认是否符合 ECI 免报条件。</li>
+          <li><b>公司申报：</b> Form C-S / C 及相关附表；资本津贴、亏损结转明细。</li>
+          <li><b>ACRA：</b> Annual Return，XBRL 财务报表；AGM 会议纪要/决议（如适用）。</li>
+          <li><b>审查要点：</b> 初创企业免税、转让定价支持、GST 注册与合规、ECI 与最终税务之间的差异。</li>
+        </ul>
+      </details>
+    </div>
+
+    <!-- Canada -->
+    <div class="card">
+      <div class="title">加拿大 - 公司所得税付款时间轴</div>
+      <pre class="mermaid">
+gantt
+    title 加拿大公司所得税 - 示例（财务年度 YE 2025-12-31，付款发生在 2026）
+    dateFormat  YYYY-MM-DD
+    axisFormat  %b
+
+    section 每月分期付款（12期）
+    1月分期付款  :active, c1,  2026-01-20, 8d
+    2月分期付款  :        c2,  2026-02-20, 8d
+    3月分期付款  :        c3,  2026-03-20, 8d
+    4月分期付款  :        c4,  2026-04-20, 8d
+    5月分期付款  :        c5,  2026-05-20, 8d
+    6月分期付款  :        c6,  2026-06-20, 8d
+    7月分期付款  :        c7,  2026-07-20, 8d
+    8月分期付款  :        c8,  2026-08-20, 8d
+    9月分期付款  :        c9,  2026-09-20, 8d
+    10月分期付款 :        c10, 2026-10-20, 8d
+    11月分期付款 :        c11, 2026-11-20, 8d
+    12月分期付款 :        c12, 2026-12-20, 8d
+
+    section 余额支付（次年）
+    余额支付（大多数公司：2月） : milestone, mca1, 2027-02-28, 1d
+    余额支付（合格CCPC：3月） : milestone, mca2, 2027-03-31, 1d
+      </pre>
+      <div class="note small">注：月度分期基于历史税额与公司规模；余额支付依据税务分类（大多数公司 2 月，合格 CCPC 3 月）。</div>
+
+      <div class="subtitle">所需文件</div>
+      <details>
+        <summary>表格、附件、审查要点</summary>
+        <ul>
+          <li><b>T2： </b>公司所得税申报表及相关附表（如 Sch 1、Sch 8、Sch 50、GIFI S100/S125）。</li>
+          <li><b>附表：</b> T4/T5（薪资和投资收入）；GST/HST 申报（如 GST34）。</li>
+          <li><b>附件：</b> 财务报表、税务计算、亏损及 CCA 连续性表、关联交易资料。</li>
+          <li><b>审查要点：</b> 小企业免税、关联公司分配、省级分配、分期缴纳与余额支付。</li>
+        </ul>
+      </details>
+    </div>
+
+  </div>
+
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</body>
+</html>

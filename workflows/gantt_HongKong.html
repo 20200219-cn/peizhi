@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>税务付款时间轴与所需文件清单</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: Arial, sans-serif; background:#f8f9fa; margin:24px; }
+    h2 { text-align:center; margin-bottom:16px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 1280px) { .grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 980px)  { .grid { grid-template-columns: 1fr; } }
+    .card {
+      background:#fff; border-radius:12px; padding:16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    .title { font-weight:700; font-size:18px; margin:4px 4px 12px; }
+    .subtitle { font-weight:600; font-size:14px; margin:12px 4px 8px; color:#333; }
+    pre.mermaid { margin:0; }
+    .note { font-size:12px; color:#666; margin:8px 4px 0; line-height:1.4; }
+    details { border:1px solid #e5e7eb; border-radius:8px; padding:10px 12px; margin-top:10px; background:#fafafa; }
+    summary { cursor:pointer; font-weight:600; }
+    details > ul { margin:10px 18px; }
+    details li { margin:6px 0; }
+    .small { font-size:12px; color:#555; }
+  </style>
+</head>
+<body>
+
+  <h2>税务付款时间轴与所需文件清单</h2>
+
+  <div class="grid">
+
+    <!-- Hong Kong -->
+    <div class="card">
+      <div class="title">香港 - 利得税付款时间轴</div>
+      <pre class="mermaid">
+gantt
+    title 香港暂缴税 - （财务年度  2025-12-31）
+    dateFormat  YYYY-MM-DD
+    axisFormat  %b %Y
+
+    section 暂缴税
+    第一期付款 ~50%       :active,  task1, 2026-01-15, 10d
+    第二期付款 ~50%       :         task2, 2026-04-15, 10d
+
+    section 最终结算
+    评估与抵消           :         task3, 2026-09-15, 30d
+    最终支付（如有）     :milestone, m1, 2026-11-15, 1d
+      </pre>
+      <div class="note small">注：实际付款时间与金额占比会根据 IRD 通知调整。</div>
+
+      <div class="subtitle">所需文件</div>
+      <details>
+        <summary>表格、附件、审查要点</summary>
+        <ul>
+          <li><b>利得税申报表（PTR）：</b> BIR51 表（公司用）。</li>
+          <li><b>补充表格：</b> 行业表格或特定附表（例如亏损、折旧明细）。</li>
+          <li><b>附件：</b> 审计财报、税务计算、亏损结转明细、关联交易及境外收入证明。</li>
+          <li><b>审查要点：</b> 年度截止一致性、转让定价、境外免税、暂缴税的相互抵消。</li>
+        </ul>
+      </details>
+    </div>
+
+  </div>
+
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</body>
+</html>

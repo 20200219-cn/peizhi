@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>HK vs SG vs CA - Tax Flows, Payment Timelines, and Checklists (YE 31 Dec)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: Arial, sans-serif; background:#f8f9fa; margin:24px; }
+    h2 { text-align:center; margin-bottom:16px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 1280px) { .grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 980px)  { .grid { grid-template-columns: 1fr; } }
+    .card {
+      background:#fff; border-radius:12px; padding:16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    .title { font-weight:700; font-size:18px; margin:4px 4px 12px; }
+    .subtitle { font-weight:600; font-size:14px; margin:12px 4px 8px; color:#333; }
+    pre.mermaid { margin:0; }
+    .note { font-size:12px; color:#666; margin:8px 4px 0; }
+    ul.check { margin:8px 18px; padding-left:0; }
+    ul.check li { margin:6px 0; }
+    .small { font-size:12px; color:#555; }
+  </style>
+</head>
+<body>
+
+  <h2>Tax Filing Flowcharts, Payment Timelines, and Checklists (Year-End 31 Dec)</h2>
+
+  <div class="grid">
+
+    <!-- Hong Kong -->
+    <div class="card">
+      <div class="title">Hong Kong - Profits Tax Filing Flow (YE: 31 Dec)</div>
+      <pre class="mermaid">
+flowchart TD
+    A["31 Dec - Financial Year End"] --> B["Prepare Financial Statements"]
+    B --> C["Audit by CPA firm (Jan - Apr)"]
+    C --> D["IRD issues Profits Tax Return (1 Apr)"]
+    D --> E{"Company category?"}
+    E -->|Normal| F["Filing deadline: 2 May"]
+    E -->|Dec YE extension| G["Filing deadline: 15 Aug"]
+    F --> H["Submit: Audited FS + Tax Computation + PTR"]
+    G --> H
+    H --> I["IRD review and Assessment (Sep - Dec)"]
+    I --> J{"Any objection?"}
+    J -->|Yes| K["File Notice of Objection within 1 month"]
+    J -->|No| L["Settle Final Tax (Jan - Apr next year)"]
+    L --> M["Next cycle begins"]
+      </pre>
+
+      <div class="subtitle">Payment timeline - Provisional and Final Profits Tax</div>
+      <pre class="mermaid">
+flowchart LR
+    T0["YA N (basis: year ended 31 Dec N-1)"] --> T1["Assessment issued: Sep - Dec N"]
+    T1 --> T2["Provisional Profits Tax - 1st instalment ~ Jan N+1 (about 75 pct)"]
+    T2 --> T3["Provisional Profits Tax - 2nd instalment ~ Apr N+1 (about 25 pct)"]
+    T3 --> T4["Final Profits Tax settlement after assessment and set-off"]
+    T4 --> T5["Provisional for YA N+1 will be re-assessed next cycle"]
+      </pre>
+      <div class="note small">Exact months and percentages may vary by IRD notice; for Dec YE, 1st and 2nd instalments commonly fall around Jan and Apr.</div>
+
+      <div class="subtitle">Required documents - forms and attachments</div>
+      <ul class="check">
+        <li><b>PTR:</b> BIR51 (Profits Tax Return for corporations).</li>
+        <li><b>Supplementary forms:</b> industry or specific schedules (e.g., loss, depreciation). Use latest IRD supplementary forms S-series if applicable.</li>
+        <li><b>Attachments:</b> Audited financial statements, detailed tax computation, supporting schedules (loss c/f, depreciation allowances, related party notes).</li>
+        <li><b>Review points:</b> YE cut-off consistency, intra-group transactions, offshore claims if any, TP documentation, prior-year provisional set-off.</li>
+      </ul>
+    </div>
+
+    <!-- Singapore -->
+    <div class="card">
+      <div class="title">Singapore - Corporate Income Tax Flow (YE: 31 Dec)</div>
+      <pre class="mermaid">
+flowchart TD
+    A1["31 Dec - Financial Year End (Basis Period ends)"] --> B1["Close books and prepare FS (Jan - Apr)"]
+    B1 --> C1["File ECI within 3 months after YE (by 31 Mar)"]
+    C1 --> D1{"Revenue <= 5M AND ECI = 0?"}
+    D1 -->|Yes| E1["ECI waiver applies"]
+    D1 -->|No| F1["Start GIRO for ECI installments (up to 10-12 months)"]
+    B1 --> G1["ACRA compliance"]
+    G1 --> G2["If AGM required: hold AGM by 30 Jun"]
+    G2 --> G3["File Annual Return by 31 Jul"]
+    G1 --> G4["If AGM dispensed: file Annual Return by 31 Jul"]
+    B1 --> H1["IRAS Corporate Tax Return (Form C-S/C) - e-File by 30 Nov (YA next year)"]
+    H1 --> I1["IRAS issues Notice of Assessment (May - Sep following year)"]
+    I1 --> J1{"Object to assessment?"}
+    J1 -->|Yes| K1["Lodge objection within 2 months"]
+    J1 -->|No| L1["Pay tax by due date (GIRO or lump sum)"]
+    L1 --> M1["Next cycle begins"]
+    E1 --> H1
+    F1 --> L1
+      </pre>
+
+      <div class="subtitle">Payment timeline - GIRO and final tax</div>
+      <pre class="mermaid">
+flowchart LR
+    S0["ECI filed by 31 Mar N"] --> S1["GIRO for ECI - monthly instalments start (up to 10-12 months within YA N)"]
+    S1 --> S2["Form C-S/C filed by 30 Nov N+1 (for YA N+1)"]
+    S2 --> S3["IRAS Notice of Assessment issued (approx May - Sep N+2 for YA N+1)"]
+    S3 --> S4["Final tax GIRO - monthly instalments per IRAS plan or lump sum by due date"]
+      </pre>
+      <div class="note small">ECI GIRO covers estimated tax for the current YA; final tax after NOA may be adjusted to reflect actual chargeable income.</div>
+
+      <div class="subtitle">Required documents - forms and attachments</div>
+      <ul class="check">
+        <li><b>ECI:</b> Estimated Chargeable Income filing via myTax Portal.</li>
+        <li><b>Corporate return:</b> Form C-S or Form C (and relevant schedules) via myTax Portal.</li>
+        <li><b>ACRA:</b> Annual Return on BizFile+, XBRL FS if required by size and type; AGM minutes or resolutions if applicable.</li>
+        <li><b>Attachments:</b> Financial statements, tax computation, capital allowance schedule, loss c/f schedule, TP documentation where applicable.</li>
+        <li><b>Review points:</b> ECI waiver conditions, partial tax exemption or start-up exemption eligibility, TP on cross-border, GST registration status if relevant.</li>
+      </ul>
+    </div>
+
+    <!-- Canada -->
+    <div class="card">
+      <div class="title">Canada - Corporation Income Tax Flow (YE: 31 Dec)</div>
+      <pre class="mermaid">
+flowchart TD
+    A2["31 Dec - Tax Year End"] --> B2["Close books and prepare FS (Jan - Apr)"]
+    B2 --> C2["Corporate tax instalments for current year (usually monthly Jan - Dec)"]
+    B2 --> D2["File T2 Corporation Income Tax Return by 30 Jun (6 months after YE)"]
+    B2 --> E2{"Balance-due date?"}
+    E2 -->|Most corporations| F2["Pay balance by end of Feb (2 months after YE)"]
+    E2 -->|Eligible CCPC| G2["Pay balance by end of Mar (3 months after YE)"]
+    B2 --> H2["Payroll info returns: T4 and T5 slips by last day of Feb"]
+    B2 --> I2["GST/HST return - frequency based; annual with 12/31 YE due by 31 Mar"]
+    D2 --> J2["CRA Notice of Assessment (timing varies)"]
+    J2 --> K2{"Object to assessment?"}
+    K2 -->|Yes| L2["File Notice of Objection within 90 days"]
+    K2 -->|No| M2["Remit any amounts due and keep records"]
+    M2 --> N2["Next cycle begins"]
+      </pre>
+
+      <div class="subtitle">Payment timeline - monthly instalments and balance due</div>
+      <pre class="mermaid">
+flowchart LR
+    C0["Start of calendar year N"] --> C1["Monthly instalments Jan - Dec N (based on prior year or current estimate)"]
+    C1 --> C2["Year-end 31 Dec N - finalise income and CCA"]
+    C2 --> C3["Balance due: end of Feb N+1 (most corps) or end of Mar N+1 (eligible CCPC)"]
+    C3 --> C4["T2 filing due by 30 Jun N+1 (6 months after YE)"]
+      </pre>
+      <div class="note small">Instalment requirement depends on prior-year or current-year tax thresholds; CCPCs with small business income may have a 3-month balance-due date.</div>
+
+      <div class="subtitle">Required documents - forms and attachments</div>
+      <ul class="check">
+        <li><b>T2:</b> Corporation Income Tax Return with required schedules.</li>
+        <li><b>Key schedules:</b> Schedule 1 (Net income for tax purposes), Schedule 8 (CCA), Schedule 50 (Shareholder information), GIFI Schedules 100 and 125 (Balance Sheet and Income Statement).</li>
+        <li><b>Slips and returns:</b> T4 payroll, T5 investment income; GST/HST return (e.g., GST34) per frequency.</li>
+        <li><b>Attachments:</b> Financial statements, tax computation, loss and CCA continuity, intercompany and TP support if applicable.</li>
+        <li><b>Review points:</b> Small business deduction and associated corporations, provincial allocations (Schedule 5), non-resident withholding, SR&ED if any.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</body>
+</html>
