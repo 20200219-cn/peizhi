@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>工作流 - Pz H</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    .container { width: 90%; margin: 0 auto; }
+
+    header {
+      background-color: #333;
+      color: white;
+      padding: 20px 0;
+    }
+
+    header h1 { text-align: center; font-size: 2em; }
+
+    main { display: flex; margin-top: 20px; }
+
+    .content { margin-left: 30px; }
+
+    .content h2 { font-size: 2em; margin-bottom: 10px; }
+
+    .meta { font-size: 0.9em; color: #777; margin-bottom: 20px; }
+
+    article p { margin-bottom: 20px; }
+
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 10px 0;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .return-home {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-size: 18px;
+      color: #333;
+      text-decoration: none;
+      background-color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      transition: background-color 0.3s ease;
+    }
+    .return-home:hover { background-color: #f4f4f4; }
+
+    /* ---- Table styles ---- */
+    .standards-table-wrap {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      padding: 20px;
+      margin: 16px 0 30px;
+      overflow-x: auto;              /* mobile safety */
+    }
+    .standards-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;           /* consistent wrapping */
+    }
+    .standards-table caption {
+      caption-side: top;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .standards-table th,
+    .standards-table td {
+      border: 1px solid #ccc;
+      padding: 10px 12px;
+      vertical-align: top;
+      word-wrap: break-word;
+      overflow-wrap: anywhere;
+      background: #fff;
+    }
+    .standards-table thead th {
+      background: #f2f4f7;
+      text-align: left;
+    }
+    /* column widths (desktop-ish) */
+    .col-entity   { width: 12rem; }
+    .col-standard { width: 12rem; }
+    .col-diff     { width: 14rem; }
+    .col-suggest  { width: auto; }
+
+    /* ---- Flowchart styles (from existing file) ---- */
+    .flowchart-section {
+      background:#fff;
+      border-radius:12px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.08);
+      padding:20px;
+      margin:40px 0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 1280px) { .grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 980px)  { .grid { grid-template-columns: 1fr; } }
+
+    .card {
+      background:#fff;
+      border-radius:12px;
+      padding:16px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.08);
+    }
+    .title {
+      font-weight:700;
+      font-size:18px;
+      margin:4px 4px 12px;
+      text-align:center;
+    }
+    pre.mermaid { margin:0; }
+  </style>
+</head>
+<body>
+  <a href="../index.html" class="return-home">返回首页</a>
+  <header>
+    <div class="container">
+      <h1>工作流</h1>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="content">
+        <h2>多主体跨境合规处理方案——以香港、新加披、加拿大为例</h2>
+        <p class="meta">2025年10月22日</p>
+        <article>
+
+          <p>作为会计人员，编制报表前应当熟悉各地区会计准则：</p>
+
+          <!-- Real HTML table centered above the flowchart -->
+          <div class="standards-table-wrap">
+            <table class="standards-table" aria-describedby="tbl-desc">
+              <caption id="tbl-desc">各地区会计准则对比表</caption>
+              <colgroup>
+                <col class="col-entity" />
+                <col class="col-standard" />
+                <col class="col-diff" />
+                <col class="col-suggest" />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th scope="col">主体</th>
+                  <th scope="col">适用准则</th>
+                  <th scope="col">和 IFRS 的差异</th>
+                  <th scope="col">建议</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>香港</td>
+                  <td>HKFRS</td>
+                  <td>基本相同</td>
+                  <td>采用 IFRS 方法编制</td>
+                </tr>
+                <tr>
+                  <td>新加坡</td>
+                  <td>SFRS</td>
+                  <td>全面趋同</td>
+                  <td>采用 IFRS 方法编制</td>
+                </tr>
+                <tr>
+                  <td>加拿大</td>
+                  <td>ASPE / IFRS</td>
+                  <td>差别巨大</td>
+                  <td>ASPE 类似中国的小企业会计准则；对集团或体量较大的加拿大子公司不建议采用 ASPE，建议采用 IFRS 方法编制</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>为了满足合并需求，应当全部采用基于IFRS的会计准则进行账务处理。之后再在单体层面对其经行IFRS – CAS的转化，方便最后做基于CAS的合并工作。</p>
+          <p>没有实际做过涉外税务申报的会对多个境外主体的税务合规问题感到棘手，在这里我会详细介绍并举出一些典型案例进行分析。</p>
+          <p>如果我是办税人员，我会根据下面流程操作，希望给大家一些参考：</p>
+
+
+
+          <!-- Flowchart section (unchanged, still below the table) -->
+          <div class="flowchart-section">
+            <h2 style="text-align:center;">企业所得税申报流程图 (纳税周期都是 2025年12月31日)</h2>
+
+            <div class="grid">
+              <!-- Hong Kong -->
+              <div class="card">
+                <div class="title">香港 - 企业利得税</div>
+                <pre class="mermaid">
+flowchart TD
+    A["12月31日 - 会计年度终了"] --> B["准备财务报表"]
+    B --> C["核数师进场审计 (26年1月 - 4月)"]
+    C --> D["香港税务局(IRD) 发放利得税申报表BIR51 / BIR52 (26年4月1日)"]
+    D --> E{"公司类型?"}
+    E -->|普通公司| F["提交截止日: 26年5月2日"]
+    E -->|申请延期| G["提交截止日: 26年8月15日"]
+    F --> H["提交三项主要文件: 审计财务报表 + 税务计算书 + 利得税申报表"]
+    G --> H
+    H --> I["IRD对提供文件进行评估和审查 (26年9月 - 12月)"]
+    I --> J{"如有异议?"}
+    J -->|是| K["在30天内提交异议通知"]
+    J -->|否| L["支付税款 (26年1月 - 次年4月)"]
+    L --> M["下个循环开始"]
+                </pre>
+              </div>
+
+              <!-- Singapore -->
+              <div class="card">
+                <div class="title">新加坡 - 企业所得税</div>
+                <pre class="mermaid">
+flowchart TD
+    A1["12月31日 - 会计年度终了"] --> B1["关账并准备报表"]
+    B1 --> B2["审计师进场审计 (26年1月 - 3月)"]
+    B2 --> C1["3月31日前提交预计应纳税收入(ECI)给新加坡税务局(IRAS)"]
+    C1 --> D1{"收入 <= 500万 且 ECI = 0?"}
+    D1 -->|是| E1["符合ECI豁免标准"]
+    D1 -->|否| F1["开始使用 GIRO 计划，自动分期支付ECI税款 (分10-12期支付)"]
+    B2 --> G1["确保遵守新加坡会计与企业监管局(ACRA)之规定"]
+    G1 --> G2["如需举办年度股东会: 需在6月30日前举行"]
+    G2 --> G3["于7月31日前向ACRA提交年报"]
+    G1 --> G4["若是无需举办年度股东会的小型公司: 于7月31日前向ACRA提交年报"]
+    B2 --> H1["向IRAS提交企业税务申报表(Form C-S/C) - 电子方式申报截至26年11月30日"]
+    H1 --> I1["IRAS于28年5月到9月之间向公司发出税务评估通知"]
+    I1 --> J1{"对评估结果不满?"}
+    J1 -->|是| K1["在2个月内提交异议"]
+    J1 -->|否| L1["在截止日前支付税款 (GIRO 或 一次性支付)"]
+    L1 --> M1["下个循环开始"]
+    E1 --> H1
+    F1 --> L1
+                </pre>
+              </div>
+
+              <!-- Canada -->
+              <div class="card">
+                <div class="title">加拿大 - 企业所得税</div>
+                <pre class="mermaid">
+flowchart TD
+    A2["12月31日 - 税务年度终了"] --> B2["准备报表"]
+    B2 --> C2["基于预估税款分期支付企业所得税 (通常按月支付)"]
+    B2 --> D2["26年6月30日前向加拿大税务局(CRA)提交T2企业所得税申报表"]
+    B2 --> E2{"是否有尾款?"}
+    E2 -->|大多数企业| F2["26年2月底前支付尾款"]
+    E2 -->|有资质的私人公司| G2["26年3月底前支付尾款"]
+    B2 --> H2["提交薪酬信息: 2月底前提交T4和T5申报单"]
+    B2 --> I2["商品和服务税/合并销售税 (GST/HST) 申报 - 月度，季度，年度 (基于公司规模); 若年度申报则在26年3月31日前提交"]
+    D2 --> J2["CRA向纳税人发出税务评估通知 (视时间而定)"]
+    J2 --> K2{"对税务评估有异议?"}
+    K2 -->|是| L2["90天内提交异议声明"]
+    K2 -->|否| M2["支付应缴税款并保存相关记录"]
+    M2 --> N2["下个循环开始"]
+                </pre>
+              </div>
+            </div>
+
+            <script type="module">
+              import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+              mermaid.initialize({ startOnLoad: true });
+            </script>
+          </div>
+
+          <p>
+            针对香港主体，企业利得税申报表（BIR51/52）通常在发出后一个月内提交。
+            我们知道，香港采用地域来源征税制度，即“源自香港的利润要纳税，源自香港以外的利润可申请豁免”。
+            所以若收入属于境外来源，就要提前准备离岸免税的支持文件。
+            支持文件可能包括各种合同，运输文件，发票，付款凭证等，证明收入确实是源自境外的。
+            这些文件需要在提交申报表时一并提交给税务局，以支持离岸收入的豁免申请。
+            如果税务局对离岸收入的豁免申请有疑问，可能会要求提供更多的支持文件或进行进一步的调查。
+            因此，提前准备和整理好相关的支持文件是非常重要的，以确保顺利通过税务局的审查。        
+          </p>
+
+<!-- Hong Kong Gantt Chart Integration -->
+<div class="flowchart-section" style="width:100%;">
+  <h2 style="text-align:center;">香港 - 暂缴税付款时间轴与所需文件清单</h2>
+
+  <!-- Force single-column full-width layout -->
+  <div class="grid" style="grid-template-columns: 1fr;">
+    <div class="card" style="width:100%;">
+      <div class="title">香港 - 利得税付款时间轴</div>
+      <pre class="mermaid" style="width:100%; overflow-x:auto;">
+gantt
+    title 香港暂缴税 - （财务年度  2025-12-31）
+    dateFormat  YYYY-MM-DD
+    axisFormat  %b %Y
+
+    section 暂缴税
+    第一期付款 ~50%       :active,  task1, 2026-01-15, 10d
+    第二期付款 ~50%       :         task2, 2026-04-15, 10d
+
+    section 最终结算
+    评估与抵消           :         task3, 2026-09-15, 30d
+    最终支付（如有）     :milestone, m1, 2026-11-15, 1d
+      </pre>
+
+      <div class="note" style="font-size:12px; color:#666; margin-top:8px;">
+        注：实际付款时间与金额占比会根据 IRD 通知调整。
+      </div>
+
+      <div class="subtitle" style="font-weight:600; margin-top:12px;">所需文件</div>
+      <details style="border:1px solid #e5e7eb; border-radius:8px; padding:10px 12px; background:#fafafa; margin-top:8px;">
+        <summary style="cursor:pointer; font-weight:600;">表格、附件、审查要点</summary>
+        <ul style="margin:10px 18px;">
+          <li><b>利得税申报表（PTR）：</b> BIR51 表（公司用）。</li>
+          <li><b>补充表格：</b> 行业表格或特定附表（例如亏损、折旧明细）。</li>
+          <li><b>附件：</b> 审计财报、税务计算、亏损结转明细、关联交易及境外收入证明。</li>
+          <li><b>审查要点：</b> 年度截止一致性、转让定价、境外免税、暂缴税的相互抵消。</li>
+        </ul>
+      </details>
+    </div>
+  </div>
+
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</div>          
+
+          <p>
+            针对新加坡主体，我们有三个月的时间申报ECI（预估应纳税所得额），并提交一年一度的Form C-S/C。
+            与实行间接税的国家类似，新加坡针对本地商品和服务供应以及进口货物征收一种间接税，商品与服务税（GST），当前税率为9%。
+            和中国类似的，新加坡企业在过去或未来12个月内的应税营业额达到或预计达到100万新加坡元时就必须在新加坡税务局进行GST注册，
+            而未达到此标准的企业可以选择自愿注册GST，以便能够抵扣进项税。
+            注册后需要定期提交GST申报表，申报周期可以是月度、季度或年度，具体取决于企业的规模和选择。
+            注册GST后，企业需要在销售商品或提供服务时向客户收取GST，并且可以抵扣在采购商品或服务时支付的GST。
+            企业需要确保按时提交GST申报表并支付应缴的GST，以避免罚款和利息。
+          </p>
+
+<!-- Singapore Gantt Chart Integration -->
+<div class="flowchart-section" style="width:100%;">
+  <h2 style="text-align:center;">新加坡税务付款时间轴与所需文件清单</h2>
+
+  <!-- Force single-column full-width layout -->
+  <div class="grid" style="grid-template-columns: 1fr;">
+    <div class="card" style="width:100%;">
+      <div class="title">新加坡 - 公司所得税付款时间轴</div>
+      <pre class="mermaid" style="width:100%; overflow-x:auto;">
+gantt
+    title 新加坡 ECI GIRO -（财务年度  2025-12-31）
+    dateFormat  YYYY-MM-DD
+    axisFormat  %b %Y
+
+    section ECI GIRO（10期付款计划）
+    第一期（1月）   :active, s1, 2026-01-05, 10d
+    第二期（2月）   :        s2, 2026-02-05, 10d
+    第三期（3月）   :        s3, 2026-03-05, 10d
+    第四期（4月）   :        s4, 2026-04-05, 10d
+    第五期（5月）   :        s5, 2026-05-05, 10d
+    第六期（6月）   :        s6, 2026-06-05, 10d
+    第七期（7月）   :        s7, 2026-07-05, 10d
+    第八期（8月）   :        s8, 2026-08-05, 10d
+    第九期（9月）   :        s9, 2026-09-05, 10d
+    第十期（10月）  :        s10,2026-10-05, 10d
+
+    section 最终支付
+    e-File Form C-S/C  : milestone, s11, 2027-11-30, 1d
+    最终税款（按 IRAS 通知） : s12, 2028-01-15, 20d
+      </pre>
+
+      <div class="note" style="font-size:12px; color:#666; margin-top:8px;">
+        注：ECI GIRO 分期数可调整，通常为 10 期；最终税款可以按 GIRO 或一次性支付。
+      </div>
+
+      <div class="subtitle" style="font-weight:600; margin-top:12px;">所需文件</div>
+      <details style="border:1px solid #e5e7eb; border-radius:8px; padding:10px 12px; background:#fafafa; margin-top:8px;">
+        <summary style="cursor:pointer; font-weight:600;">表格、附件、审查要点</summary>
+        <ul style="margin:10px 18px;">
+          <li><b>ECI： </b>通过 myTax Portal 提交，确认是否符合 ECI 免报条件。</li>
+          <li><b>公司申报：</b> Form C-S / C 及相关附表；资本津贴、亏损结转明细。</li>
+          <li><b>ACRA：</b> Annual Return，XBRL 财务报表；AGM 会议纪要/决议（如适用）。</li>
+          <li><b>审查要点：</b> 初创企业免税、转让定价支持、GST 注册与合规、ECI 与最终税务之间的差异。</li>
+        </ul>
+      </details>
+    </div>
+  </div>
+
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</div>
+
+          <p>
+            位于加拿大的主体需要在财年结束后六个月内申报公司税表T2，还需按省份申报地方税。
+            和中国一样，即使公司当年没有盈利或应缴税额为零，T2 也必须申报。
+            加拿大的公司税申报通常需要包括财务报表、税务计算书以及其他相关的支持文件。
+            公司需要确保所有文件的准确性和完整性，以符合加拿大税务局（CRA）的要求。
+            如果公司对税务评估有异议，可以在收到评估通知后的90天内提交异议声明。
+            公司应保存所有相关的税务记录和文件，以备将来可能的审计或查询。
+            时间紧迫，从财年结束 → T2申报 → 缴税 → CRA评税 → NOA发出的流程图我会在之后补充，尽请关注。
+          </p>
+
+<!-- Canada Gantt Chart Integration -->
+<div class="flowchart-section" style="width:100%;">
+  <h2 style="text-align:center;">加拿大税务付款时间轴与所需文件</h2>
+
+  <!-- Force single-column full-width layout -->
+  <div class="grid" style="grid-template-columns: 1fr;">
+    <div class="card" style="width:100%;">
+      <div class="title">加拿大 - 公司所得税付款时间轴</div>
+      <pre class="mermaid" style="width:100%; overflow-x:auto;">
+gantt
+    title 加拿大公司所得税 - （税务年度 YE 2025-12-31）
+    dateFormat  YYYY-MM-DD
+    axisFormat  %b %Y
+
+    section 每月分期付款（12期）
+    1月分期付款  :active, c1,  2026-01-20, 8d
+    2月分期付款  :        c2,  2026-02-20, 8d
+    3月分期付款  :        c3,  2026-03-20, 8d
+    4月分期付款  :        c4,  2026-04-20, 8d
+    5月分期付款  :        c5,  2026-05-20, 8d
+    6月分期付款  :        c6,  2026-06-20, 8d
+    7月分期付款  :        c7,  2026-07-20, 8d
+    8月分期付款  :        c8,  2026-08-20, 8d
+    9月分期付款  :        c9,  2026-09-20, 8d
+    10月分期付款 :        c10, 2026-10-20, 8d
+    11月分期付款 :        c11, 2026-11-20, 8d
+    12月分期付款 :        c12, 2026-12-20, 8d
+
+    section 余额支付（次年）
+    余额支付（大多数公司：2月） : milestone, mca1, 2027-02-28, 1d
+    余额支付（合格CCPC：3月） : milestone, mca2, 2027-03-31, 1d
+      </pre>
+
+      <div class="note" style="font-size:12px; color:#666; margin-top:8px;">
+        注：月度分期基于历史税额与公司规模；余额支付依据税务分类（大多数公司 2 月，合格 CCPC 3 月）。
+      </div>
+
+      <div class="subtitle" style="font-weight:600; margin-top:12px;">所需文件</div>
+      <details style="border:1px solid #e5e7eb; border-radius:8px; padding:10px 12px; background:#fafafa; margin-top:8px;">
+        <summary style="cursor:pointer; font-weight:600;">表格、附件、审查要点</summary>
+        <ul style="margin:10px 18px;">
+          <li><b>T2： </b>公司所得税申报表及相关附表（如 Sch 1、Sch 8、Sch 50、GIFI S100/S125）。</li>
+          <li><b>附表：</b> T4/T5（薪资和投资收入）；GST/HST 申报（如 GST34）。</li>
+          <li><b>附件：</b> 财务报表、税务计算、亏损及 CCA 连续性表、关联交易资料。</li>
+          <li><b>审查要点：</b> 小企业免税、关联公司分配、省级分配、分期缴纳与余额支付。</li>
+        </ul>
+      </details>
+    </div>
+  </div>
+
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</div>
+
+          <p>还有公司年检的事宜：</p>
+          <p>
+            应当提前准备审计底稿和税务工作底稿，核对所有税项余额（应交税金、递延税项等）
+            为了保证合规，
+            对于香港主体，需确保NAR1年报、商业登记证续期按时提交。
+            对于新加坡主体，AGM召开后即使通过BizFile递交Annual Return。
+            对于加拿大主体，要及时更新公司注册信息并提交省级年报。
+          </p>
+
+          <p>最后再补充一点税务合规的案例：</p>
+          <p>
+            曾有菲律宾子公司向香港母公司支付技术服务费作为财务系统维护、品牌管理、战略咨询等的开支。菲律宾在跨境支付时，银行会收取 15% 非居民预提税。
+            此时，如果税务人员知道，香港与菲律宾之间存在双边税收协定，预提税率可降至 5%。
+            那么，为了享受此优惠，菲律宾子公司就需向香港母公司索取合规的税收居民身份证明（Certificate of Residence, COR）。
+            根据规定，若受益人（香港母公司）在香港为“税收居民”，且无菲律宾常设机构（PE），则预提税税率可从15%降至10%。
+            若母公司向香港税务局（IRD）申请税收居民身份证明，就可以向菲律宾子公司及其外部CPA说明，并申请协定退税程序。
+          </p>
+          <p>暂时先说这么多，持续补充中。。。。</p>
+
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Pz H | All rights reserved</p>
+    </div>
+  </footer>
+</body>
+</html>
