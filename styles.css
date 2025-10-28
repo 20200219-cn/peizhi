@@ -4,7 +4,7 @@
     img, object, iframe, video { max-width: 100%; height: auto; display: block; }
 
     header { background: #333; color: #fff; padding: 10px 0; text-align: center; position: relative; }
-    main { max-width: 1200px; margin: 20px auto; padding: 20px; background: #fff; margin-top: 30px;}
+    main { max-width: 1200px; margin: 20px auto; padding: 20px; background: #fff; }
     h1, h2 { margin-bottom: 10px; color: #333; }
     section { margin-bottom: 30px; }
     ul { list-style: none; padding: 0; margin: 0; }
@@ -157,9 +157,9 @@
     }
 
     /* 隐藏第奇数个时间节点的圆点 */
-    .timeline-item:nth-child(odd)::after {
-      display: none;
-    }
+.timeline-item:nth-child(odd)::after {
+  display: none;
+}
     .timestamp { font-weight: bold; color: #007bff; }
     .timeline-content h2 { margin-top: 0; }
 
@@ -220,58 +220,26 @@
         height: auto !important;
       }
     }
-      .timeline-content {
-        cursor: pointer;
-      }
-
-      .timeline-content:hover {
-        box-shadow: 0 0 10px rgba(0,0,0,0.25);
-      }
-
-      .timeline-content a {
-        display: block;
-        color: inherit;
-        text-decoration: none;
-      }
-
-      .timeline-content a::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-      }
-
-      .card-link { display: block; color: inherit; text-decoration: none; }
-      .card-link .timeline-content { transition: box-shadow .2s ease; }
-      .card-link:hover .timeline-content { box-shadow: 0 0 10px rgba(0,0,0,.25); }
-
-
-
-
-.pixel-banner {
-  width: 100%;
-  background-color: #e3edec; /* Light blue background */
-  color: rgb(216, 60, 60);
-  font-size: 24px; /* Adjust text size */
-  text-align: center;
-  padding: 10px 0;
-  position: relative; /* Keeps the banner fixed on the screen */
-  top: 10px; /* Moves the banner down 50px from the top */
-  left: 0;
-  z-index: 1000;
-  overflow: hidden;
+.timeline-content {
+  cursor: pointer;
 }
 
-.banner-content {
-  display: inline-block;
-  white-space: nowrap;
-  animation: scroll-left 10s linear infinite;
+.timeline-content:hover {
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
 }
 
-@keyframes scroll-left {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
+.timeline-content a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
 }
+
+.timeline-content a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.card-link { display: block; color: inherit; text-decoration: none; }
+.card-link .timeline-content { transition: box-shadow .2s ease; }
+.card-link:hover .timeline-content { box-shadow: 0 0 10px rgba(0,0,0,.25); }
