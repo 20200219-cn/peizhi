@@ -3,18 +3,22 @@
     body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; background: #f4f4f4; overflow-x: hidden; }
     img, object, iframe, video { max-width: 100%; height: auto; display: block; }
 
-    header { background: #333; color: #fff; padding: 10px 0; text-align: center; position: relative; }
-    main { max-width: 1200px; margin: 20px auto; padding: 20px; background: #fff; margin-top: 30px;}
-    h1, h2 { margin-bottom: 10px; color: #333; }
-    section { margin-bottom: 30px; }
-    ul { list-style: none; padding: 0; margin: 0; }
-    li { margin: 5px 0; }
-    footer { text-align: center; padding: 10px 0; background: #333; color: #fff; }
-
+    header {
+      background: #333;
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between; /* spread title and links */
+      flex-wrap: wrap; /* allows wrapping on small screens */
+    }
+    .header-left {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
     .subpage-link {
-      position: absolute;
-      top: 10px;
-      right: 20px;
+      position: static; /* no absolute positioning */
       font-size: 18px;
       color: #fff;
       text-decoration: none;
@@ -24,6 +28,16 @@
       transition: background-color 0.3s ease;
     }
     .subpage-link:hover { background-color: #555; }
+   
+
+    main { max-width: 1200px; margin: 20px auto; padding: 20px; background: #fff; margin-top: 30px;}
+    h1, h2 { margin-bottom: 10px; color: #333; }
+    section { margin-bottom: 30px; }
+    ul { list-style: none; padding: 0; margin: 0; }
+    li { margin: 5px 0; }
+    footer { text-align: center; padding: 10px 0; background: #333; color: #fff; }
+
+
 
     /* Blog title */
     .blog-title {
@@ -168,16 +182,18 @@
       body { font-size: 14px; line-height: 1.5; }
       main { width: 100%; margin: 0; padding: 12px; border-radius: 0; }
       .frosted-glass { padding: 12px; }
-
-      /* 顶部链接改为自然流式，避免绝对定位造成溢出 */
-      header { padding-bottom: 50px; }
-      .subpage-link {
-        position: static;
-        display: inline-block;
-        margin: 8px 6px 0;
-        font-size: 14px;
-        padding: 6px 10px;
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column; /* stack items vertically */
+        align-items: flex-start;
+        text-align: left;
       }
+
+      .subpage-link {
+        font-size: 14px;
+        padding: 6px 8px;
+      }
+    }      
 
       /* 标题与头像缩放 */
       .blog-title { font-size: 28px; margin: 16px 0; }
@@ -247,31 +263,42 @@
 
 
 
-.pixel-banner {
-  width: 100%;
-  background-color: #e3edec; /* Light blue background */
-  color: rgb(216, 60, 60);
-  font-size: 24px; /* Adjust text size */
-  text-align: center;
-  padding: 10px 0;
-  position: relative; /* Keeps the banner fixed on the screen */
-  top: 10px; /* Moves the banner down 50px from the top */
-  left: 0;
-  z-index: 1000;
-  overflow: hidden;
-}
+      .pixel-banner {
+        width: 100%;
+        background-color: #e3edec; /* Light blue background */
+        color: rgb(216, 60, 60);
+        font-size: 24px; /* Adjust text size */
+        text-align: center;
+        padding: 10px 0;
+        position: relative; /* Keeps the banner fixed on the screen */
+        top: 10px; /* Moves the banner down 50px from the top */
+        left: 0;
+        z-index: 1000;
+        overflow: hidden;
+      }
 
-.banner-content {
-  display: inline-block;
-  white-space: nowrap;
-  animation: scroll-left 10s linear infinite;
-}
+      .banner-content {
+        display: inline-block;
+        white-space: nowrap;
+        animation: scroll-left 10s linear infinite;
+      }
 
-@keyframes scroll-left {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
+      @keyframes scroll-left {
+        0% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+
+
+    /* 语言切换按钮 */
+    .lang-switch {
+      position: absolute; right: 16px; top: 10px; display: flex; gap: 8px;
+    }
+    .lang-switch button {
+      padding: 6px 10px; border-radius: 8px; border: 1px solid #ccc; background: rgba(255,255,255,0.9);
+      cursor: pointer;
+    }
+    .lang-switch button:hover { filter: brightness(0.95); }      

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,157 +9,186 @@
 <body>
 
 <header>
-  <h1>My Blog - Pz H</h1>
-  <a href="articles/article_1_education.html" class="subpage-link" style="right: 305px;">杂文</a>
-  <a href="workflows/flwochart_minoso.html" class="subpage-link" style="right: 221px;">工作流</a>
-  <a href="projects/project_experience.html" class="subpage-link" style="right: 120px;">项目经验</a>
-  <a href="contacts/contact_me.html" class="subpage-link">联系方式</a>
-</header>
-
-
-  <!-- Scrolling banner -->
-  <div class="pixel-banner">
-    <span class="banner-content">Your Custom Message Here! You can add more text as needed!</span>
+  <div class="header-left">
+    <a href="articles/article_1_education.html" class="subpage-link" data-i18n="nav.articles">杂文</a>
+    <a href="workflows/BP_miniso.html" class="subpage-link" data-i18n="nav.workflow">工作流</a>
+    <a href="projects/project_experience.html" class="subpage-link" data-i18n="nav.projects">项目经验</a>
+    <a href="contacts/contact_me.html" class="subpage-link" data-i18n="nav.contact">联系方式</a>
   </div>
 
-  <script src="script.js"></script>
+  <h1>My Blog - Pz H</h1>
 
+  <!-- 语言切换 -->
+  <div class="lang-switch">
+    <button id="btn-zh" type="button" data-i18n="btn.zh">中文</button>
+    <button id="btn-en" type="button" data-i18n="btn.en">English</button>
+  </div>
+</header>
+
+<!-- 滚动像素条幅 -->
+<div class="pixel-banner">
+  <span class="banner-content" data-i18n="banner">部分页面已更新英文版，请点击工作流查看</span>
+</div>
 
 <main>
   <section>
     <!-- 头像 + 标题 -->
     <section class="avatar-container">
       <div class="avatar">
-        <img src="images/avatar_1.jpg" alt="Pz H">
+        <img src="images/avatar_1.jpg" alt="Pz H" />
       </div>
-      <div class="blog-title">关 于 他</div>
+      <div class="blog-title" data-i18n="about.blockTitle">关于他的一切</div>
     </section>
 
-
-
     <section class="frosted-glass">
-      <h2>工作经验</h2>
+      <h2 data-i18n="work.title">工作经验</h2>
 
       <!-- Work Experience 1 -->
-      <button class="collapsible">2022.7 - 2023.12: 审计专员 - 会计师事务所</button>
+      <button class="collapsible" data-i18n="work.exp1.title">2022.7 - 2023.12：审计专员 - 会计师事务所</button>
       <div class="timeline">
 
         <!-- BT Project 1 -->
         <div class="timeline-item">
-          <div class="timestamp"><h3>2022年7月</h3></div>
+          <div class="timestamp"><h3 data-i18n="work.exp1.t1.time">2022年7月</h3></div>
         </div>
         <div class="timeline-item">
           <a class="card-link" href="projects/bt_project_1.html">
             <div class="timeline-content">
-              <h2>H股上市公司季报审阅</h2>
-              <img src="images/bt_project_1_main.jpg" alt="H股季报审阅" width="500">
-              <object type="text/plain" data="text/bt_project_1_brief.html" width="500" height="100"></object>
+              <h2 data-i18n="work.exp1.t1.title">H股上市公司季报审阅</h2>
+              <img src="images/bt_project_1_main.jpg" alt="H股季报审阅" width="500" />
+              <p data-i18n="work.exp1.t1.desc">
+                刚进事务所就被震惊了，当天下午HR就让我立刻坐火车去武汉上项目。
+                还没缓过神来，我就开始了第一个真正的审计任务，审阅一家港股上市公司的季度报表。
+                季报不像年报那样要做完整审计，更像是一场节奏飞快的实战演练。我们要在很短时间内看懂客户的账、判断风险、核对披露信息。
+                最棘手的是，这家公司账套用的是中国会计准则（CAS），但报表得按国际准则（IFRS）披露。
+                两套体系差异很大，尤其是利润表的科目分类......
+              </p>
             </div>
           </a>
         </div>
 
         <!-- BT Project 2 -->
         <div class="timeline-item">
-          <div class="timestamp"><h3>2022年10月</h3></div>
+          <div class="timestamp"><h3 data-i18n="work.exp1.t2.time">2022年10月</h3></div>
         </div>
         <div class="timeline-item">
           <a class="card-link" href="projects/bt_project_2.html">
-            <div class="timeline-content">            
-              <h2>A股上市公司预审</h2>
-              <img src="images/bt_project_2_main.jpg" alt="A股预审" width="500">
-              <object type="text/plain" data="text/bt_project_2_brief.html" width="500" height="100"></object>
+            <div class="timeline-content">
+              <h2 data-i18n="work.exp1.t2.title">A股上市公司预审</h2>
+              <img src="images/bt_project_2_main.jpg" alt="A股预审" width="500" />
+              <p data-i18n="work.exp1.t2.desc">
+                我参与了一个供应链企业的预审项目。
+                预审是年审之前的准备性审计，程序相对简化，但目标是对被审计单位的财务状况和内部控制体系进行全面观察和初步评估，为后续正式年审奠定基础。
+                在该项目中，我主要负责资产类科目的底稿编制、对公司内部控制的初步了解，并识别潜在问题与改进空间......
+              </p>
             </div>
           </a>
         </div>
 
         <!-- BT Project 3 -->
         <div class="timeline-item">
-          <div class="timestamp"><h3>2022年12月</h3></div>
+          <div class="timestamp"><h3 data-i18n="work.exp1.t3.time">2022年12月</h3></div>
         </div>
         <div class="timeline-item">
           <a class="card-link" href="projects/bt_project_3.html">
             <div class="timeline-content">
-              <h2>A股上市公司年审</h2>
-              <img src="images/bt_project_3_main.jpg" alt="A股年审" width="500">
-              <object type="text/plain" data="text/bt_project_3_brief.html" width="500" height="100"></object>
+              <h2 data-i18n="work.exp1.t3.title">A股上市公司年审</h2>
+              <img src="images/bt_project_3_main.jpg" alt="A股年审" width="500" />
+              <p data-i18n="work.exp1.t3.desc">
+                同年，我参与了另一家A股上市公司的年度审计项目。这家公司位于无锡，主营化工原料生产，在多个国家设有子公司。我的审计任务从其中一家韩国子公司开始。
+                项目启动时，正值国内疫情放开后感染高峰，上一批外勤团队几乎全员感染被迫休息。
+                我们接到紧急通知后，仅用一晚时间便组成了一个四人小组，启程前往韩国执行审计......
+              </p>
             </div>
-          </a>  
+          </a>
         </div>
 
         <!-- BT Project 4 -->
         <div class="timeline-item">
-          <div class="timestamp"><h3>2023年7月</h3></div>
+          <div class="timestamp"><h3 data-i18n="work.exp1.t4.time">2023年7月</h3></div>
         </div>
         <div class="timeline-item">
           <a class="card-link" href="projects/bt_project_4.html">
             <div class="timeline-content">
-              <h2>ipo审计项目</h2>
-              <img src="images/bt_project_4_main.jpg" alt="IPO审计项目" width="500">
-              <object type="text/html" data="text/bt_project_4_brief.html" width="500" height="100"></object>
+              <h2 data-i18n="work.exp1.t4.title">IPO审计项目</h2>
+              <img src="images/bt_project_4_main.jpg" alt="IPO审计项目" width="500" />
+              <p data-i18n="work.exp1.t4.desc">
+                我最后一次参与的审计项目，是对一家位于天津的新能源企业的审计。这家公司在多个国家设有分支机构，尤其在德国拥有一间关键性的子公司，负责集团的海外贸易中转业务。
+                该企业正计划在境内IPO，因此我们的工作重点是对其财务信息进行全方位的审阅和规范，以确保未来的上市审查能够顺利通过......
+              </p>
             </div>
-          </a>  
+          </a>
         </div>
       </div>
 
       <!-- Work Experience 2 -->
-      <button class="collapsible">2024.3 - 2024.11: 全盘账会计 - 跨境电商企业</button>
+      <button class="collapsible" data-i18n="work.exp2.title">2024.3 - 2024.11：全盘账会计 - 跨境电商企业</button>
       <div class="timeline">
         <div class="timeline-item">
-          <div class="timestamp"><h3>2024年3月</h3></div>
+          <div class="timestamp"><h3 data-i18n="work.exp2.t1.time">2024年3月</h3></div>
         </div>
         <div class="timeline-item">
           <a class="card-link" href="projects/cq_stages.html">
             <div class="timeline-content">
-              <h2>从乙方到甲方</h2>
-              <img src="images/cq_stages_main.jpg" alt="从乙方到甲方" width="500">
-              <object type="text/html" data="text/cq_stages_brief.html" width="500" height="100"></object>
+              <h2 data-i18n="work.exp2.t1.title">从乙方到甲方</h2>
+              <img src="images/cq_stages_main.jpg" alt="从乙方到甲方" width="500" />
+              <p data-i18n="work.exp2.t1.desc">
+                从事务所到企业，是职业身份的重大转变。
+                在事务所做审计时，我始终是乙方，以外部视角评估他人。
+                而第一次进入甲方企业，我终于成为了经营的一部分，需要在体系内解决问题，而不是仅仅指出问题......
+              </p>
             </div>
-          </a>  
+          </a>
         </div>
       </div>
 
       <!-- Work Experience 3 -->
-      <button class="collapsible">2024.12 - 2025.3: 海外财务 - 金融科技公司</button>
+      <button class="collapsible" data-i18n="work.exp3.title">2024.12 - 2025.3：海外财务 - 金融科技公司</button>
       <div class="timeline">
         <div class="timeline-item">
-          <div class="timestamp"><h3>2024年12月</h3></div>
+          <div class="timestamp"><h3 data-i18n="work.exp3.t1.time">2024年12月</h3></div>
         </div>
         <div class="timeline-item">
           <a class="card-link" href="projects/mo_stages.html">
             <div class="timeline-content">
-              <h2>在金融领域拓展</h2>
-              <img src="images/mo_stages_main.jpg" alt="在金融领域拓展" width="500">
-              <object type="text/html" data="text/mo_stages_brief.html" width="500" height="100"></object>
+              <h2 data-i18n="work.exp3.t1.title">在金融领域拓展</h2>
+              <img src="images/mo_stages_main.jpg" alt="在金融领域拓展" width="500" />
+              <p data-i18n="work.exp3.t1.desc">
+                我是会计与金融专业出身，对金融服务的基本逻辑比较熟悉。
+                当我第一次了解公司业务时，意识到这是一个在菲律宾运营的类金融服务平台，主要包含 BNPL（Buy Now Pay Later）与 QL（Quick Loan） 模式......
+              </p>
             </div>
-          </a>  
+          </a>
         </div>
       </div>
 
       <!-- Work Experience 4 -->
-      <button class="collapsible">2025.6 - 2025.9: 成本分析员 - 机械设备制造企业</button>
+      <button class="collapsible" data-i18n="work.exp4.title">2025.6 - 2025.9：成本分析员 - 机械设备制造企业</button>
       <div class="timeline">
         <div class="timeline-item">
-          <div class="timestamp"><h3>2025年6月</h3></div>
+          <div class="timestamp"><h3 data-i18n="work.exp4.t1.time">2025年6月</h3></div>
         </div>
         <div class="timeline-item">
           <a class="card-link" href="projects/mit_stages.html">
             <div class="timeline-content">
-              <h2>专注数据分析</h2>
-              <img src="images/mit_stages_main.jpg" alt="专注数据分析" width="500">
-              <object type="text/html" data="text/mit_stages_brief.html" width="500" height="100"></object>
+              <h2 data-i18n="work.exp4.t1.title">专注数据分析</h2>
+              <img src="images/mit_stages_main.jpg" alt="专注数据分析" width="500" />
+              <p data-i18n="work.exp4.t1.desc">
+                刚入职时，我把重点放在熟悉企业的成本核算逻辑和数据流向上。凭借过往审计项目的经验，我很快厘清了公司成本的主要构成：人工、材料、外协、物流与间接费用......
+              </p>
             </div>
-          </a>  
+          </a>
         </div>
       </div>
 
     </section>
 
     <section class="frosted-glass">
-      <h2>技能</h2>
+      <h2 data-i18n="skills.title">技能</h2>
       <ul>
-        <li>财务：中国会计准则(CAS), 国际会计准则(IFRS), ACCA(10/13), 初级职称</li>
-        <li>软件：Excel, 用友, 金蝶, 各类ERP(i.e. Odoo)</li>
-        <li>编程：数据库, Python(数据可视化), VBA, JS</li>
+        <li data-i18n="skills.item1">财务：中国会计准则(CAS), 国际会计准则(IFRS), ACCA(10/13), 初级职称</li>
+        <li data-i18n="skills.item2">软件：Excel, 用友, 金蝶, 各类ERP(如 Odoo)</li>
+        <li data-i18n="skills.item3">编程：数据库, Python(数据可视化), VBA, JS</li>
       </ul>
     </section>
   </section>
@@ -169,7 +198,7 @@
   <p>&copy; 2025 Pz H | All rights reserved</p>
 </footer>
 
-<script src="script.js"></script>
-
+<script src="script_collapsible.js"></script>
+<script src="script_language.js"></script>
 </body>
 </html>

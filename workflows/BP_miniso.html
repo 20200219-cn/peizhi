@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BP Workflow - Pz H</title>
+  <style>
+    :root{
+      --bg:#f4f4f4; --fg:#333; --muted:#555; --card:#fff;
+      --shadow:0 0 10px rgba(0,0,0,.1);
+      --radius:12px;
+    }
+    *{box-sizing:border-box}
+    body{
+      font-family:Arial,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      line-height:1.65;margin:0;background:var(--bg);color:var(--fg)
+    }
+    header{background:#333;color:#fff}
+    footer { text-align: center; padding: 10px 0; background: #333; color: #fff; }
+
+    /* Grid header: no overlap, same visual style for the button */
+    header{
+      display:grid;
+      grid-template-columns:auto 1fr auto;   /* [Back] [Title] [Lang] */
+      grid-template-areas:"left title right";
+      align-items:center;
+      gap:12px;
+      padding:10px 16px;
+    }
+    header h1{
+      grid-area:title;
+      justify-self:center;
+      margin:0;
+      font-weight:700;
+    }
+    .lang-switch{
+      grid-area:right;
+      display:flex;
+      gap:8px;
+      justify-self:end;
+    }
+    /* Keep your old white pill look */
+    .return-home{
+      grid-area:left;
+      position:static;                      /* <- no absolute, so no covering */
+      font-size:18px;
+      color:#333;
+      text-decoration:none;
+      background-color:#fff;
+      padding:5px 10px;
+      border-radius:999px;
+      border:1px solid #ccc;
+      transition:background-color .3s ease;
+    }
+    .return-home:hover{background-color:#f4f4f4;}
+
+    main{
+      max-width:1200px;margin:20px auto;padding:20px;background:#fff;
+      border-radius:var(--radius);box-shadow:var(--shadow)
+    }
+    h2{margin:0 0 12px;font-size:20px}
+    h4{margin:0 0 10px}
+
+    
+    .muted{color:var(--muted)}
+    .container{
+      display:flex;gap:20px;justify-content:space-between;width:100%;
+      margin-top:20px;align-items:flex-start
+    }
+    .left,.right{
+      background:rgba(255,255,255,.7);padding:20px;border-radius:var(--radius);
+      box-shadow:var(--shadow)
+    }
+    .left{width:32%}
+    .right{width:66%}
+    .mermaid{width:100%;height:auto;overflow:auto}
+    .details{background:transparent;padding:0;box-shadow:none}
+    .details p{margin:0 0 10px}
+    .divider{height:1px;background:#eee;margin:20px 0}
+
+    /* Language toggle visibility */
+    .lang-zh{display:block}
+    .lang-en{display:none}
+    .lang-btn{
+      border:1px solid #ccc;background:#fff;border-radius:999px;
+      padding:6px 12px;font-size:13px;cursor:pointer
+    }
+    .lang-btn.active{border-color:#222;font-weight:700}
+
+    /* Mobile */
+    @media(max-width:900px){
+      .container{flex-direction:column}
+      .left,.right{width:100%}
+    }
+  </style>
+
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad:true, securityLevel:'loose' });
+
+    const I18N = {
+      headerTitle:{ zh:"工作流 - MINISO", en:"Workflow - MINISO" },
+      backHome:{ zh:"返回首页", en:"Back to Home" },
+    };
+
+    const $$ = (s,root=document)=>Array.from(root.querySelectorAll(s));
+    function applyLang(lang){
+      // Only titles/footer need i18n keys; content is dual-language blocks below.
+      $$("[data-i18n]").forEach(el=>{
+        const key=el.dataset.i18n; if(I18N[key]) el.textContent = I18N[key][lang];
+      });
+      const zh = lang==='zh';
+      $$(".lang-zh").forEach(el=>el.style.display=zh?'block':'none');
+      $$(".lang-en").forEach(el=>el.style.display=zh?'none':'block');
+      $$(".lang-btn").forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
+      document.documentElement.lang = lang;
+      localStorage.setItem('bp_lang', lang);
+    }
+    window.addEventListener('DOMContentLoaded', ()=>{
+      const saved = localStorage.getItem('bp_lang') || 'zh';
+      applyLang(saved);
+      $$(".lang-btn").forEach(b=> b.onclick = ()=>applyLang(b.dataset.lang));
+    });
+  </script>
+</head>
+
+<body>
+  <header>
+    <a href="../index.html" class="return-home" data-i18n="backHome">返回首页</a>
+    <h1 data-i18n="headerTitle">工作流 - MINISO</h1>
+    <div class="lang-switch" aria-label="language switch">
+      <button class="lang-btn active" data-lang="zh">中文</button>
+      <button class="lang-btn" data-lang="en">English</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Intro -->
+    <h2 class="lang-zh">财务BP的工作及工作重点</h2>
+    <h2 class="lang-en">What a Finance BP Does & What Matters Most</h2>
+
+    <p class="lang-zh">我认为的财务BP，既要懂财务，更要懂业务。他/她工作的核心是围绕着降本增效展开的。</p>
+    <p class="lang-en">A Finance BP must master finance and understand the business. The core is improving efficiency and reducing costs.</p>
+
+    <p class="lang-zh">“降本增效”听起来空泛，但对实操的人来说非常落地。下面结合过往经历，谈谈预算在其中的指导作用。</p>
+    <p class="lang-en">“Efficiency & cost reduction” sounds vague, yet it’s very practical. Based on experience, here is how the budget guides the work.</p>
+
+    <p class="lang-zh">财务BP工作的起点是预算。我会收到业务部门提交的销售收入、成本、费用和资本支出等预算。懂销售就是懂业务，因此先从销售预测说起。</p>
+    <p class="lang-en">Budgeting is the starting point. BPs receive revenue, cost, OPEX and CAPEX budgets. Sales forecasting comes first.</p>
+
+    <!-- Section 1 -->
+    <div class="container">
+      <div class="left">
+        <div class="mermaid lang-zh">
+graph TD
+A["预算制定阶段 (25年Q4)"]
+A1["协同业务部门制定预算假设（销售、开店数、毛利率等）"]
+A2["使用过往三年同期数据作为销售收入base（假设）"]
+A3["区域门店经营计划"]
+A4["SKU规划与上新节奏"]
+A5["市场部推动的活动"]
+A6["汇总产生一个当季销售预算"]
+
+A --> A1 --> A2
+A2 --> |+/-| A3
+A2 --> |+/-| A4
+A2 --> |+/-| A5 --> A6
+A4 --> |=| A6
+A3 --> A6
+        </div>
+        <div class="mermaid lang-en">
+graph TD
+A["Budget Formulation (Q4 FY25)"]
+A1["Co-build assumptions with Biz (Sales, Store Count, GM%, etc.)"]
+A2["Use prior 3-year same-period as base"]
+A3["Regional store operation plans"]
+A4["SKU planning & launch cadence"]
+A5["Marketing campaigns & events"]
+A6["Roll up to the seasonal sales budget"]
+
+A --> A1 --> A2
+A2 --> |+/-| A3
+A2 --> |+/-| A4
+A2 --> |+/-| A5 --> A6
+A4 --> |=| A6
+A3 --> A6
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="details">
+          <h4 class="lang-zh">1. 预算制定阶段</h4>
+          <h4 class="lang-en">1) Budget Formulation (Q4)</h4>
+
+          <p class="muted lang-zh"><strong>目标：</strong>明确经营目标。</p>
+          <p class="muted lang-en"><strong>Goal:</strong> Set clear operating targets.</p>
+
+          <p class="lang-zh">
+            销售的 base 多取自往年同期数据，并结合各区域经营计划、SKU 上新节奏、市场活动、节假日等进行增减。
+            同时考虑汇率、关税、气温、政治稳定性等宏观因素做出调整。
+          </p>
+          <p class="lang-en">
+            Use prior-year same-period data as the base, then adjust for regional plans, SKU launch cadence, marketing events and holidays,
+            plus macro factors like FX, tariffs, weather, and political stability.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Modes / revenue -->
+    <p class="lang-zh">对销售预测影响首当其冲的是开店模式，门店收入来源可能包括：</p>
+    <p class="lang-en">Store model strongly affects sales. Revenue streams may include:</p>
+    <p class="lang-zh">
+      1）供货收入：向加盟方收取一定溢价；<br/>
+      2）加盟费：按销售额比例收取；<br/>
+      3）保证金与品牌使用费：与新店数量强相关，可作为预测参数，但在滚动预测中可比性较弱。
+    </p>
+    <p class="lang-en">
+      (1) Supply margin charged to franchisees;<br/>
+      (2) Franchise fees based on sales;<br/>
+      (3) Deposits & brand royalties tied to new-store openings—useful parameters but less comparable in rolling forecasts.
+    </p>
+
+    <!-- Section 2 -->
+    <div class="container">
+      <div class="left">
+        <div class="mermaid lang-zh">
+graph TD
+B["月度执行与预测阶段 (每月滚动)"]
+B1["构建预算模型 (门店ROI、区域销售预测)"]
+B2["收集实际销售与成本数据"]
+B3["核对门店租金、人工、营销费用"]
+B4["计算单店损益、同店增长、毛利率"]
+B5["与业务团队评审差异：预算 vs 实际 vs 预测"]
+B6["更新滚动预测与现金流预测"]
+B --> B1 --> B2 --> B3 --> B4 --> B5 --> B6
+        </div>
+        <div class="mermaid lang-en">
+graph TD
+B["Monthly Execution & Rolling Forecast"]
+B1["Build models (Store ROI, Regional Sales)"]
+B2["Collect actual sales & cost data"]
+B3["Reconcile rent, labor, and marketing"]
+B4["Compute P&L per store, SSSG, GM%"]
+B5["Variance review: Budget vs Actual vs Forecast"]
+B6["Update rolling forecast & cash flow"]
+B --> B1 --> B2 --> B3 --> B4 --> B5 --> B6
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="details">
+          <h4 class="lang-zh">2. 月度执行与预测阶段</h4>
+          <h4 class="lang-en">2) Monthly Execution & Rolling Forecast</h4>
+
+          <p class="muted lang-zh"><strong>目标：</strong>执行月度计划，收集实际数据，与预算对比并更新预测。</p>
+          <p class="muted lang-en"><strong>Goal:</strong> Execute plan, collect actuals, compare vs. budget, and update forecasts.</p>
+
+          <p class="lang-zh">
+            如果搭建单店销售模型，销售额可分解为“客流量 × 转化率 × 客单价”。在看总体销售的同时，单独观察客单价与转化率的波动并归因。
+          </p>
+          <p class="lang-en">
+            For a single-store model, Sales = Traffic × Conversion × Ticket Size. Track ticket size and conversion separately and attribute changes.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Regional model -->
+    <p class="lang-zh">
+      还可构建区域模型。以澳大利亚为例，墨尔本/悉尼/阿德莱德的增长与产业结构不同：
+    </p>
+    <p class="lang-en">
+      Build regional models as well. In Australia, Melbourne/Sydney/Adelaide differ in growth and industrial structure:
+    </p>
+    <p class="lang-zh">
+      阿德莱德旅游属性强，夏季客流大；悉尼与墨尔本更依赖工业与服务业。季节性有助于做对的时点上架对的商品。当地白领与留学生偏好也会影响预测。
+    </p>
+    <p class="lang-en">
+      Adelaide is tourism-heavy (higher summer traffic); Sydney/Melbourne rely more on industry/services.
+      Seasonality helps place the right SKUs at the right time. Local white-collar and student preferences matter too.
+    </p>
+
+    <!-- Section 3 -->
+    <div class="container">
+      <div class="left">
+        <div class="mermaid lang-zh">
+graph TD
+C["业务支持与决策分析阶段"]
+C1["以达成利润目标为导向的分析"]
+C2["基于产品类目的GM%"]
+C3["基于产品价格区间的GM%"]
+C4["产品生命周期（ROI测算）"]
+C5["与业务部门一道分析预测差异并正确归因"]
+C6["挖掘更深层的数据关系"]
+C7["提出改善措施与行动计划"]
+C --> C1 --> |角度一| C2
+C1 --> |角度二| C3
+C1 --> |角度三| C4
+C2 --> C5
+C3 --> C5
+C4 --> C5
+C5 --> C6 --> C7
+        </div>
+        <div class="mermaid lang-en">
+graph TD
+C["Business Support & Decision Analytics"]
+C1["Profit-target-oriented analysis"]
+C2["GM% by category"]
+C3["GM% by price band"]
+C4["Product lifecycle (ROI)"]
+C5["Joint variance analysis & attribution"]
+C6["Mine deeper relationships"]
+C7["Actions & improvement plan"]
+C --> C1 --> |View 1| C2
+C1 --> |View 2| C3
+C1 --> |View 3| C4
+C2 --> C5
+C3 --> C5
+C4 --> C5
+C5 --> C6 --> C7
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="details">
+          <h4 class="lang-zh">3. 业务支持与决策分析阶段</h4>
+          <h4 class="lang-en">3) Business Support & Decision Analytics</h4>
+
+          <p class="muted lang-zh"><strong>目标：</strong>参与测算，评估回报。</p>
+          <p class="muted lang-en"><strong>Goal:</strong> Engage in modeling and evaluate returns.</p>
+
+          <p class="lang-zh">
+            产品结构是销售预测的主干。先看类目毛利率差异（家具、美妆个护、玩具盲盒、IP 联名、零食等）。盲盒/美妆毛利高但占比不一定大，需要看 GM% 与结构占比是否合理。
+          </p>
+          <p class="lang-en">
+            Product mix underpins forecasts. Category GM% varies (home, beauty & personal care, blind boxes, IP co-brands, snacks).
+            High-GM categories may be small, so check GM% and mix together.
+          </p>
+
+          <p class="lang-zh">
+            Actual vs Budget 是分析原则。GM% 过低可能源于促销；过高亦可能暗示定价偏离市场。需要对标竞品均价以支撑定价策略的判断。
+          </p>
+          <p class="lang-en">
+            “Actual vs Budget” is the rule. Low GM% may reflect heavy promos; too high could hint mispricing vs market.
+            Benchmark peers to validate pricing strategy.
+          </p>
+
+          <p class="lang-zh">
+            进一步挖掘 GM 与周转的关系。高毛利常伴随慢周转、现金压力大；高周转往往毛利低、现金压力小。
+            关键在于找到 GM 与周转的最优组合点，并关注 GMROI、现金转换周期等指标。
+          </p>
+          <p class="lang-en">
+            Explore GM vs turnover. High GM often means slower turnover and cash pressure; high turnover tends to lower GM but lighter cash burden.
+            Find the sweet spot and track GMROI and cash conversion cycle.
+          </p>
+
+          <p class="lang-zh">
+            当库存积压时，即使 GM% 高也应果断促销——前提是整体利润健康。若资金紧张，牺牲少许毛利换更好现金流亦是理性选择。
+          </p>
+          <p class="lang-en">
+            If inventory piles up, promote even with high GM%—provided total profit remains healthy.
+            When cash is tight, sacrificing some margin for liquidity can be rational.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Price bands -->
+    <p class="lang-zh">产品结构还包括价格区间与生命周期。</p>
+    <p class="lang-en">Mix also includes price bands and life cycle.</p>
+
+    <p class="lang-zh">
+      若利润主要贡献区间下移，可能是结构老化、价格敏感上升、或竞品更具性价比；如由促销驱动，要评估“以价换量”能否恢复。
+      若为成本上升，则需联动成本预算模块应对。
+    </p>
+    <p class="lang-en">
+      If profit-contributing bands shift downward, causes may include aging mix, higher price sensitivity, or stronger competitors.
+      If promos drove it, test whether volume sticks. If costs rose, respond via cost budgeting.
+    </p>
+
+    <!-- Lifecycle -->
+    <p class="lang-zh">每个产品都有生命周期，这个角度同样重要。</p>
+    <p class="lang-en">Every product has a life cycle—equally important.</p>
+
+    <p class="lang-zh">
+      导入期可建 ROI 模型（总收入、变动成本、固定投入、净收益）。若数月后 ROI 较差或动销低，应停止放量。
+      成长/成熟/衰退期亦可类比处理。
+    </p>
+    <p class="lang-en">
+      In the introduction phase, build an ROI model (revenue, variable cost, fixed investment, net profit).
+      If ROI lags or sell-through is low after months, stop scaling. Treat growth/mature/decline similarly.
+    </p>
+  </main>
+
+<footer>
+  <p>&copy; 2025 Pz H | All rights reserved</p>
+</footer>
+</body>
+</html>
